@@ -23,6 +23,17 @@
                 this.options.method = method;
             }
         }
+
+        setParams(params) {
+            for (let param in params) {
+                if (this.url.indexOf('?') !== -1) {
+                    this.url += '&';
+                } else {
+                    this.url += '?';
+                }
+                this.url += encodeURIComponent(param) + '=' + encodeURIComponent(params[param]);
+            }
+        }
     }
 
     window.Request = Request;
