@@ -15,6 +15,14 @@
                 this.url = url;
             }
         }
+
+        setMethod(method) {
+            method = method.toUpperCase();
+            const authoMethods = ['GET', 'POST', 'PUT', 'DELETE'];
+            if (authoMethods.contains(method)) {
+                this.options.method = method;
+            }
+        }
     }
 
     window.Request = Request;
