@@ -12,6 +12,9 @@
             this.createHtmlStructure();
             this.setStyle();
             this.createNavigation();
+            this.onWindowResize();
+            const onWindowResizeBound = this.onWindowResize.bind(this);
+            window.addEventListener('resize', onWindowResizeBound);
         }
 
         get slidesVisible() {
@@ -83,6 +86,14 @@
             let translateX = sliderIndex * -100 / this.slides.length;
             this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)';
             this.currentSlide = sliderIndex;
+        }
+
+        onWindowResize() {
+            let isSmallScreen = window.innerWidth < 800;
+            if (isSmallScreen !== this.isSmallScreen) {
+                this.isSmallScreen = isSmallScreen;
+                this.setStyle();
+            }
         }
     }
 
