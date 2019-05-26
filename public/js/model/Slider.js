@@ -8,12 +8,18 @@
                 slidesVisible: 1
             }, userOptions);
             this.isSmallScreen = false;
+            this.currentSlide = 0;
             this.createHtmlStructure();
             this.setStyle();
+            this.createNavigation();
         }
 
         get slidesVisible() {
             return this.isSmallScreen ? 1 : this.userOptions.slidesVisible;
+        }
+
+        get slidesToScroll() {
+            return this.isSmallScreen ? 1 : this.userOptions.slidesToScroll;
         }
 
         createHtmlStructure() {
@@ -38,6 +44,45 @@
             let displayRatio = this.slides.length / this.slidesVisible;
             this.container.style.width = (displayRatio * 100) + '%';
             this.slides.forEach(slide => slide.style.width = ((100 / this.slidesVisible) / displayRatio) + '%');
+        }
+
+        createNavigation() {
+            let nextButton = document.createElement('i');
+            nextButton.classList.add('cdw-slider-nextBtn', 'material-icons', 'medium');
+            nextButton.textContent = 'chevron_right';
+            this.root.appendChild(nextButton);
+            let prevButton = document.createElement('i');
+            prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium');
+            prevButton.textContent = 'chevron_left';
+            this.root.appendChild(prevButton);
+            nextButton.addEventListener('click', this.moveNext.bind(this));
+            prevButton.addEventListener('click', this.movePrev.bind(this));
+            this.root.addEventListener('keyup', e => {
+                if (e.key === 'ArrowRight' || e.key === 'Right') {
+                    this.moveNext();
+                } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+                    this.movePrev();
+                }
+            })
+        }
+
+        moveNext() {
+            this.gotoSlide(this.currentSlide + this.slidesToScroll);
+        }
+
+        movePrev() {
+            this.gotoSlide(this.currentSlide - this.slidesToScroll);
+        }
+
+        gotoSlide(sliderIndex) {
+            if (sliderIndex < 0) {
+                sliderIndex = this.slides.length - this.slidesVisible;
+            } else if (sliderIndex >= this.slides.length || (this.slides[this.currentSlide + this.slidesVisible] === undefined && sliderIndex > this.currentSlide)) {
+                sliderIndex = 0;
+            }
+            let translateX = sliderIndex * -100 / this.slides.length;
+            this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)';
+            this.currentSlide = sliderIndex;
         }
     }
 
