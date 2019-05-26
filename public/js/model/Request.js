@@ -46,6 +46,28 @@
                 this.postDatas = new FormData(postDatas);
             }
         }
+
+        execute(onSuccess, onError) {
+            if (!this.url) {
+                return;
+            }
+            this.xhr.open(this.options.method, this.url, this.options.async);
+            this.xhr.onreadystatechange = function () {
+                if (this.readyState !== 4) {
+                    return;
+                }
+                if (this.status >= 400) {
+                    return onError(this.status, this.statusText);
+                }
+                const parsedDatas = JSON.parse(this.responseText);
+                onSuccess(parsedDatas);
+            }
+            if (this.options.method === 'POST') {
+                this.xhr.send(this.postDatas);
+            } else {
+                this.xhr.send();
+            }
+        }
     }
 
     window.Request = Request;
