@@ -34,6 +34,18 @@
                 this.url += encodeURIComponent(param) + '=' + encodeURIComponent(params[param]);
             }
         }
+
+        setPostDatas(postDatas, isJson = false) {
+            if (!postDatas) {
+                return
+            }
+            if (isJson) {
+                this.xhr.setRequestHeader('Content-Type', 'application/json');
+                this.postDatas = JSON.stringify(postDatas);
+            } else {
+                this.postDatas = new FormData(postDatas);
+            }
+        }
     }
 
     window.Request = Request;
