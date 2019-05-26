@@ -50,16 +50,18 @@
         }
 
         createNavigation() {
-            let nextButton = document.createElement('i');
-            nextButton.classList.add('cdw-slider-nextBtn', 'material-icons', 'medium');
-            nextButton.textContent = 'chevron_right';
-            this.root.appendChild(nextButton);
-            let prevButton = document.createElement('i');
-            prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium');
-            prevButton.textContent = 'chevron_left';
-            this.root.appendChild(prevButton);
-            nextButton.addEventListener('click', this.moveNext.bind(this));
-            prevButton.addEventListener('click', this.movePrev.bind(this));
+            this.nextButton = document.createElement('i');
+            this.nextButton.classList.add('cdw-slider-nextBtn', 'material-icons', 'medium');
+            this.nextButton.textContent = 'chevron_right';
+            this.root.appendChild(this.nextButton);
+            this.prevButton = document.createElement('i');
+            this.prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium');
+            this.prevButton.textContent = 'chevron_left';
+            this.root.appendChild(this.prevButton);
+            const moveNextBound = this.moveNext.bind(this);
+            this.nextButton.addEventListener('click', moveNextBound);
+            const movePrevBound = this.movePrev.bind(this);
+            this.prevButton.addEventListener('click', movePrevBound);
             this.root.addEventListener('keyup', e => {
                 if (e.key === 'ArrowRight' || e.key === 'Right') {
                     this.moveNext();
@@ -94,6 +96,12 @@
                 this.isSmallScreen = isSmallScreen;
                 this.setStyle();
             }
+        }
+
+        destruct() {
+            window.removeEventListener('resize', onWindowResizeBound);
+            this.nextButton.addEventListener('click', moveNextBound);
+            this.prevButton.addEventListener('click', movePrevBound);
         }
     }
 
