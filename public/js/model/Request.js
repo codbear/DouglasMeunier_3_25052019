@@ -9,6 +9,12 @@
                 async: true
             }, userOptions)
         }
+
+        setUrl(url) {
+            if (url) {
+                this.url = url;
+            }
+        }
     }
 
     window.Request = Request;
