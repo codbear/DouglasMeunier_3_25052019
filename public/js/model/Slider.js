@@ -7,7 +7,13 @@
                 slidesToScroll: 1,
                 slidesVisible: 1
             }, userOptions);
+            this.isSmallScreen = false;
             this.createHtmlStructure();
+            this.setStyle();
+        }
+
+        get slidesVisible() {
+            return this.isSmallScreen ? 1 : this.userOptions.slidesVisible;
         }
 
         createHtmlStructure() {
@@ -26,6 +32,12 @@
                 this.container.appendChild(slide);
                 return slide;
             })
+        }
+
+        setStyle() {
+            let displayRatio = this.slides.length / this.slidesVisible;
+            this.container.style.width = (displayRatio * 100) + '%';
+            this.slides.forEach(slide => slide.style.width = ((100 / this.slidesVisible) / displayRatio) + '%');
         }
     }
 
