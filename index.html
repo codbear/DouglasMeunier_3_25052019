@@ -24,6 +24,39 @@
             <img src="public/img/placeholders/placeholder3.jpg" alt="" class="slide"/>
             <img src="public/img/placeholders/placeholder4.jpg" alt="" class="slide"/>
         </div>
+        <div class="row">
+            <div id="stations-map" class="col s10 offset-s1 l7 card"></div>
+            <div class="col s10 offset-s1 l4">
+                <div id="infos-panel" class="card">
+                    <div class="card-content">
+                        <h2 class="card-title">Détails de la station</h2>
+                        <div class="card-action">
+                            <p id="call-to-action">Sélectionnez une station pour afficher ses détails</p>
+                            <div id="station-details"></div>
+                            <form id="reservation-form" method="post" style="display: none;">
+                                <div class="input-field">
+                                    <input id="lastName" name="lastName" type="text" class="validate"/>
+                                    <label for="lastName">Nom</label>
+                                </div>
+                                <div class="input-field">
+                                    <input id="firstName" name="firstName" type="text" class="validate"/>
+                                    <label for="firstName">Prénom</label>
+                                </div>
+                                <button id="reservation-form-book-btn" class="waves-effect waves-light btn modal-trigger blue darken-1" data-target="modal-signature-pad"><i class="material-icons left">directions_bike</i>Réserver</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="reservation-details" class="card">
+                    <div class="card-content">
+                        <h2 class="card-title">Réservation en cours</h2>
+                        <div class="card-action">
+                            <p>Vous n'avez aucune réservation en cours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous">
