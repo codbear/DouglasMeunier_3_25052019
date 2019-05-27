@@ -1,7 +1,7 @@
 (function(window) {
     class LeafletMarker {
 
-        constructor(map, bound, title, onClick = undefined) {
+        constructor(map, bound, title, onClick) {
             if (onClick) {
                 this.marker = L.marker(bound, {title: title}).addTo(map).on('click', onClick);
             } else {
