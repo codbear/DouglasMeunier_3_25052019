@@ -26,6 +26,9 @@
             return new window.LeafletMarker(this.map, bound, title, onClick);
         }
 
+        centerOnMarkers() {
+            this.map.fitBounds(this.bounds);
+        }
     }
 
     window.LeafletMap = LeafletMap;
