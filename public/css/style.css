@@ -1,4 +1,17 @@
 /*
+Framework
+*/
+.card-title {
+    font-family: 'Molle', cursive;
+    color: #1E88E5;
+}
+
+.card-action {
+    font-family: 'Lato', sans-serif;
+}
+
+
+/*
 Slider
 */
 .cdw-slider {
