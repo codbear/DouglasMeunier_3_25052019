@@ -3,6 +3,14 @@
 
         constructor(userContainer) {
             this.userContainer = userContainer;
+            this.createHtmlElements();
+        }
+
+        createHtmlElements() {
+            this.status = document.createElement('p');
+            this.adress = document.createElement('adress');
+            this.availableBikes = document.createElement('p');
+            this.availableBikeStands = document.createElement('p');
         }
     }
 
