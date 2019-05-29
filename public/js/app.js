@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', function (){
         requestStationsList.execute(function(parsedDatas) {
             let stationsList = parsedDatas;
             let stationDetails = new window.StationDetails(document.querySelector('#station-details'));
+            const reservationForm = document.querySelector('#reservation-form');
+            const callToAction = document.querySelector('#call-to-action');
             stationsList.forEach((station) => {
                 function onClick() {
+                    callToAction.style.display = 'none';
                     stationDetails.setDetails(station);
                     stationDetails.createHtmlStructure();
+                    reservationForm.style.display = null;
                 }
                 let marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
             })
