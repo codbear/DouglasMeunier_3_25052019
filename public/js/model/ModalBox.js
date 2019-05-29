@@ -3,13 +3,13 @@
 
         constructor() {
             this.modalBox = null;
-            this.contentWrapper = this.modalBox.querySelector('.modal-box-wrapper');
-            this.closeBtn = this.modalBox.querySelector('.close-modal-box');
         }
 
         openBox(event) {
             event.preventDefault();
             this.modalBox = document.querySelector(event.target.dataset.target);
+            this.contentWrapper = this.modalBox.querySelector('.modal-box-wrapper');
+            this.closeBtn = this.modalBox.querySelector('.close-modal-box');
             this.modalBox.style.display = null;
             const closeBoxBound = this.closeBox.bind(this);
             const stopPropagationBound = this.stopPropagation.bind(this);
