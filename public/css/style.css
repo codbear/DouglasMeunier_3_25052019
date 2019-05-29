@@ -10,6 +10,10 @@ Framework
     font-family: 'Lato', sans-serif;
 }
 
+.card {
+    border-radius: 25px;
+}
+
 .input-field input[type=text]:focus + label {
     color: #000 !important;
 }
