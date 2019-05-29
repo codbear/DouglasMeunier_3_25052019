@@ -1,8 +1,11 @@
 (function(window, document) {
     class ModalBox {
 
-        constructor() {
+        constructor(button) {
+            this.button = button;
             this.modalBox = null;
+            const openModalBoxBound = this.openBox.bind(this);
+            this.button.addEventListener('click', openModalBoxBound);
         }
 
         openBox(event) {
