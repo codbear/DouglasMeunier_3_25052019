@@ -28,6 +28,10 @@
             this.contentWrapper.removeEventListener('click', stopPropagationBound);
             this.modalBox = null;
         }
+
+        stopPropagation(event) {
+            event.stopPropagation();
+        }
     }
 
     window.ModalBox = ModalBox;
