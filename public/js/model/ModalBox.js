@@ -6,6 +6,8 @@
             this.modalBox = null;
             const openModalBoxBound = this.openBox.bind(this);
             this.button.addEventListener('click', openModalBoxBound);
+            const closeOnEscapeBound = this.closeOnEscape.bind(this);
+            window.addEventListener('keydown', closeOnEscapeBound);
         }
 
         openBox(event) {
@@ -30,6 +32,12 @@
             this.closeBtn.removeEventListener('click', closeBoxBound);
             this.contentWrapper.removeEventListener('click', stopPropagationBound);
             this.modalBox = null;
+        }
+
+        closeOnEscape(event) {
+            if (event.key === 'Escape' || event.key === 'Esc') {
+                this.closeBox(event);
+            }
         }
 
         stopPropagation(event) {
