@@ -36,7 +36,7 @@
             }
             this.address.textContent = station.address.toLowerCase();
             this.address.classList.add('capitalize');
-            this.availableBikes.textContent = station.available_bikes + ' vélos dispônibles';
+            this.availableBikes.textContent = station.available_bikes + ' vélos disponibles';
             this.availableBikeStands.textContent = station.available_bike_stands + ' places disponibles';
         }
     }
