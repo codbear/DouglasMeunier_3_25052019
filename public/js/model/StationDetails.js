@@ -8,7 +8,7 @@
 
         createHtmlElements() {
             this.status = document.createElement('p');
-            this.adress = document.createElement('adress');
+            this.address = document.createElement('adress');
             this.availableBikes = document.createElement('p');
             this.availableBikeStands = document.createElement('p');
         }
@@ -34,8 +34,8 @@
                 default :
                     this.status.textContent = 'Impossible de récupérer l\'état de la station';
             }
-            this.adress.textContent = station.adress.toLowerCase();
-            this.adress.classList.add('capitalize');
+            this.address.textContent = station.address.toLowerCase();
+            this.address.classList.add('capitalize');
             this.availableBikes.textContent = station.available_bikes + ' vélos dispônibles';
             this.availableBikeStands.textContent = station.available_bike_stands + ' places disponibles';
         }
