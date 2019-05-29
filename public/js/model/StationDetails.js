@@ -13,6 +13,14 @@
             this.availableBikeStands = document.createElement('p');
         }
 
+        createHtmlStructure() {
+            document.querySelector('#call-to-action').style.display = 'none';
+            this.userContainer.appendChild(this.status);
+            this.userContainer.appendChild(this.address);
+            this.userContainer.appendChild(this.availableBikes);
+            this.userContainer.appendChild(this.availableBikeStands);
+        }
+
         setDetails(station) {
             switch (station.status) {
                 case 'OPEN':
