@@ -1,8 +1,8 @@
 (function(window, document) {
     class StationDetails {
 
-        constructor() {
-
+        constructor(userContainer) {
+            this.userContainer = userContainer;
         }
     }
 
