@@ -12,8 +12,13 @@ document.addEventListener('DOMContentLoaded', function (){
         })
         requestStationsList.execute(function(parsedDatas) {
             let stationsList = parsedDatas;
+            let stationDetails = new window.StationDetails(document.querySelector('#station-details'));
             stationsList.forEach((station) => {
-                let marker = map.addMarker(station.position.lat, station.position.lng, station.address);
+                function onClick() {
+                    stationDetails.setDetails(station);
+                    stationDetails.createHtmlStructure();
+                }
+                let marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
             })
             map.centerOnMarkers();
         }, function(status, statusText) {
