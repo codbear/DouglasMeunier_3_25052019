@@ -29,6 +29,7 @@
             this.modalBox.style.display = 'none';
             const closeBoxBound = this.closeBox.bind(this);
             const stopPropagationBound = this.stopPropagation.bind(this);
+            this.modalBox.removeEventListener('click', closeBoxBound);
             this.closeBtn.removeEventListener('click', closeBoxBound);
             this.contentWrapper.removeEventListener('click', stopPropagationBound);
             this.modalBox = null;
@@ -42,6 +43,13 @@
 
         stopPropagation(event) {
             event.stopPropagation();
+        }
+
+        destruct() {
+            const openModalBoxBound = this.openBox.bind(this);
+            this.button.removeEventListener('click', openModalBoxBound);
+            const closeOnEscapeBound = this.closeOnEscape.bind(this);
+            window.removeEventListener('keydown', closeOnEscapeBound);
         }
     }
 
