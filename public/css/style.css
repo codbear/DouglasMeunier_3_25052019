@@ -75,3 +75,14 @@ Map
         margin: 0 3% 0 2%;
     }
 }
+
+/*
+Station details
+*/
+#infos-panel, #reservation-details {
+    padding-bottom: 2%;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
