@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function (){
     const reservationForm = document.querySelector('#reservation-form');
     const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
+    bookBtn.addEventListener('click', (e) => {
+        if (reservationForm.lastName.value === "" && reservationForm.firstName.value === "") {
+            e.preventDefault();
+            modalSignaturePad.listenOpenButton();
+        }
+    })
     const initMap = async function() {
         let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
         await map.loadMap(stationsMap);

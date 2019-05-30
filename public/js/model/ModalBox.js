@@ -4,10 +4,13 @@
         constructor(button) {
             this.button = button;
             this.modalBox = null;
-            const openModalBoxBound = this.openBox.bind(this);
-            this.button.addEventListener('click', openModalBoxBound);
             const closeOnEscapeBound = this.closeOnEscape.bind(this);
             window.addEventListener('keydown', closeOnEscapeBound);
+        }
+
+        listenOpenButton() {
+            const openModalBoxBound = this.openBox.bind(this);
+            this.button.addEventListener('click', openModalBoxBound);
         }
 
         openBox(event) {
