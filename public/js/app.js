@@ -48,4 +48,12 @@ document.addEventListener('DOMContentLoaded', function (){
         e.preventDefault();
         signaturePad.clearPad();
     });
+    signaturePadValidationBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (signaturePad.isEmpty()) {
+            alert('Vous devez signer pour valider la réservation');
+            return;
+        }
+        modalSignaturePad.closeBox(e);
+    })
 })
