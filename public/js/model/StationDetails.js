@@ -36,8 +36,26 @@
             }
             this.address.textContent = station.address.toLowerCase();
             this.address.classList.add('capitalize');
-            this.availableBikes.textContent = station.available_bikes + ' vélos disponibles';
-            this.availableBikeStands.textContent = station.available_bike_stands + ' places disponibles';
+            if (station.available_bikes > 1) {
+                this.availableBikes.textContent = station.available_bikes + ' vélos disponibles';
+                this.availableBikes.classList.remove('red-text');
+            } else if (station.available_bikes === 1) {
+                this.availableBikes.textContent = station.available_bikes + ' vélo disponible';
+                this.availableBikes.classList.remove('red-text');
+            } else {
+                this.availableBikes.textContent = 'Aucun vélo disponible';
+                this.availableBikes.classList.add('red-text');
+            }
+            if (station.available_bike_stands > 1) {
+                this.availableBikeStands.textContent = station.available_bike_stands + ' places disponibles';
+                this.availableBikes.classList.remove('red-text');
+            } else if (station.available_bike_stands === 1) {
+                this.availableBikeStands.textContent = station.available_bike_stands + ' place disponible';
+                this.availableBikes.classList.remove('red-text');
+            } else {
+                this.availableBikeStands.textContent = 'Aucune place disponible';
+                this.availableBikes.classList.add('red-text');
+            }
         }
     }
 
