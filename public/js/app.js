@@ -35,4 +35,5 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
+    const signaturePad = new window.SignaturePad(document.querySelector('#signature-pad-canvas'), 450, 400);
 })
