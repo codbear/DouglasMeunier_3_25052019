@@ -1,8 +1,8 @@
 (function(window, document) {
     class Reservation {
 
-        constructor() {
-
+        constructor(reservationForm) {
+            this.reservationForm = reservationForm;
         }
     }
 
