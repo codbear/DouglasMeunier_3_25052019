@@ -9,6 +9,7 @@
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
             this.ctx.beginPath();
+            this.initListeners();
         }
 
         setLineWidth(lineWidth) {
@@ -33,6 +34,17 @@
                 return pixelValue === 0;
             }
             return pixelsMatrix.every(isPixelNull);
+        }
+
+        initListeners() {
+            const drawBound = this.draw.bind(this);
+            this.canvas.addEventListener('mousedown', (e) => {
+                this.ctx.moveTo(e.layerX, e.layerY);
+                this.canvas.addEventListener('mousemove', drawBound);
+            });
+            window.addEventListener('mouseup', () => {
+                this.canvas.removeEventListener('mousemove', drawBound);
+            })
         }
     }
 
