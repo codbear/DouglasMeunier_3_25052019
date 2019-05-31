@@ -42,4 +42,10 @@ document.addEventListener('DOMContentLoaded', function (){
             modalSignaturePad.openBox(e);
         }
     })
+    const signaturePadResetBtn = document.querySelector('#signature-pad-reset-btn');
+    const signaturePadValidationBtn = document.querySelector('#signature-pad-validation-btn');
+    signaturePadResetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signaturePad.clearPad();
+    });
 })
