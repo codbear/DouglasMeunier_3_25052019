@@ -1,16 +1,18 @@
 (function(window, document) {
     class ModalBox {
 
-        constructor(button) {
-            this.button = button;
+        constructor(triggerBtn, shouldListenTrigger = false) {
+            this.triggerBtn = triggerBtn;
             this.modalBox = null;
+            this.openBox = this.openBox.bind(this);
+            this.closeBox = this.closeBox.bind(this);
             const closeOnEscapeBound = this.closeOnEscape.bind(this);
             window.addEventListener('keydown', closeOnEscapeBound);
+            if (shouldListenTrigger) this.listenTrigger();
         }
 
-        listenOpenButton() {
-            const openModalBoxBound = this.openBox.bind(this);
-            this.button.addEventListener('click', openModalBoxBound);
+        listenTrigger(event) {
+            this.triggerBtn.addEventListener('click', this.openBox);
         }
 
         openBox(event) {
@@ -19,22 +21,19 @@
             this.contentWrapper = this.modalBox.querySelector('.modal-box-wrapper');
             this.closeBtn = this.modalBox.querySelector('.close-modal-box');
             this.modalBox.style.display = null;
-            const closeBoxBound = this.closeBox.bind(this);
-            const stopPropagationBound = this.stopPropagation.bind(this);
-            this.modalBox.addEventListener('click', closeBoxBound);
-            this.closeBtn.addEventListener('click', closeBoxBound);
-            this.contentWrapper.addEventListener('click', stopPropagationBound);
+            this.modalBox.addEventListener('click', this.closeBox);
+            this.closeBtn.addEventListener('click', this.closeBox);
+            this.contentWrapper.addEventListener('click', this.stopPropagation);
         }
 
         closeBox(event) {
+            console.log("ok");
             if (this.modalBox === null) return;
             event.preventDefault();
             this.modalBox.style.display = 'none';
-            const closeBoxBound = this.closeBox.bind(this);
-            const stopPropagationBound = this.stopPropagation.bind(this);
-            this.modalBox.removeEventListener('click', closeBoxBound);
-            this.closeBtn.removeEventListener('click', closeBoxBound);
-            this.contentWrapper.removeEventListener('click', stopPropagationBound);
+            this.modalBox.removeEventListener('click', this.closeBox);
+            this.closeBtn.removeEventListener('click', this.closeBox);
+            this.contentWrapper.removeEventListener('click', this.stopPropagation);
             this.modalBox = null;
         }
 
@@ -49,10 +48,8 @@
         }
 
         destruct() {
-            const openModalBoxBound = this.openBox.bind(this);
-            this.button.removeEventListener('click', openModalBoxBound);
-            const closeOnEscapeBound = this.closeOnEscape.bind(this);
-            window.removeEventListener('keydown', closeOnEscapeBound);
+            this.triggerBtn.removeEventListener('click', this.openBox);
+            window.removeEventListener('keydown', this.closeOnEscape);
         }
     }
 
