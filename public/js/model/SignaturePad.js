@@ -26,6 +26,14 @@
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.beginPath();
         }
+
+        isEmpty() {
+            const pixelsMatrix = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height).data;
+            const isPixelNull = function(pixelValue) {
+                return pixelValue === 0;
+            }
+            return pixelsMatrix.every(isPixelNull);
+        }
     }
 
     window.SignaturePad = SignaturePad;
