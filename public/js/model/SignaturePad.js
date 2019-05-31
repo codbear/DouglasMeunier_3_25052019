@@ -10,6 +10,12 @@
             this.ctx.lineWidth = lineWidth;
             this.ctx.beginPath();
         }
+
+        setLineWidth(lineWidth) {
+            if (lineWidth) {
+                this.ctx.lineWidth = lineWidth;
+            }
+        }
     }
 
     window.SignaturePad = SignaturePad;
