@@ -16,6 +16,11 @@
                 this.ctx.lineWidth = lineWidth;
             }
         }
+
+        draw(event) {
+            this.ctx.lineTo(event.layerX, event.layerY);
+            this.ctx.stroke();
+        }
     }
 
     window.SignaturePad = SignaturePad;
