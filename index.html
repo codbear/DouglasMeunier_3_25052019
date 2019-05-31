@@ -44,10 +44,21 @@
                                     <input id="firstName" name="firstName" type="text" class="validate"/>
                                     <label for="firstName">Prénom</label>
                                 </div>
-                                <button id="reservation-form-book-btn" class="waves-effect waves-light btn modal-trigger blue darken-1" data-target="#modal-signature-pad"><i class="material-icons left">directions_bike</i>Réserver</button>
+                                <button id="reservation-form-book-btn" class="waves-effect waves-light btn blue darken-1" data-target="#modal-signature-pad"><i class="material-icons left">directions_bike</i>Réserver</button>
                                 <div id="modal-signature-pad" class="modal-box" style="display: none;">
-                                    <div class="modal-box-wrapper">
-                                        <button class="close-modal-box">Fermer</button>
+                                    <div class="modal-box-wrapper card">
+                                        <div class="card-content">
+                                            <button class="close-modal-box waves-effect waves-light btn">Fermer</button><br/>
+                                            <br/>
+                                            <div class="card-title">
+                                                <p class="grey-text text-darken-2">Nous avons besoin de votre autographe pour valider la réservation</p>
+                                            </div>
+                                            <div class="card-action">
+                                                <canvas id="signature-pad-canvas"></canvas>
+                                                <button id="signature-pad-reset-btn" class="waves-effect waves-light btn">Effacer</button>
+                                                <button id="signature-pad-validation-btn" class="waves-effect waves-light btn">Signer</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -76,6 +87,7 @@
         <script src="public/js/model/LeafletMap.js"></script>
         <script src="public/js/model/StationDetails.js"></script>
         <script src="public/js/model/ModalBox.js"></script>
+        <script src="public/js/model/SignaturePad.js"></script>
         <script src="public/js/app.js"></script>
     </body>
 </html>

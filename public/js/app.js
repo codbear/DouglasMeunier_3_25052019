@@ -2,16 +2,8 @@ document.addEventListener('DOMContentLoaded', function (){
     let welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'));
 
     const stationsMap = document.querySelector('#stations-map');
-    const callToAction = document.querySelector('#call-to-action');
     const reservationForm = document.querySelector('#reservation-form');
-    const bookBtn = document.querySelector('#reservation-form-book-btn');
-    const modalSignaturePad = new window.ModalBox(bookBtn);
-    bookBtn.addEventListener('click', (e) => {
-        if (reservationForm.lastName.value === "" && reservationForm.firstName.value === "") {
-            e.preventDefault();
-            modalSignaturePad.listenOpenButton();
-        }
-    })
+    const callToAction = document.querySelector('#call-to-action');
     const initMap = async function() {
         let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
         await map.loadMap(stationsMap);
@@ -37,8 +29,31 @@ document.addEventListener('DOMContentLoaded', function (){
             console.error(status + statusText);
         })
     }
-
     if (stationsMap !== null) {
         initMap();
     }
+
+    const bookBtn = document.querySelector('#reservation-form-book-btn');
+    const modalSignaturePad = new window.ModalBox(bookBtn);
+    const signaturePad = new window.SignaturePad(document.querySelector('#signature-pad-canvas'), 450, 400);
+    bookBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (reservationForm.lastName.value !== "" && reservationForm.firstName.value !== "") {
+            modalSignaturePad.openBox(e);
+        }
+    })
+    const signaturePadResetBtn = document.querySelector('#signature-pad-reset-btn');
+    const signaturePadValidationBtn = document.querySelector('#signature-pad-validation-btn');
+    signaturePadResetBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signaturePad.clearPad();
+    });
+    signaturePadValidationBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (signaturePad.isEmpty()) {
+            alert('Vous devez signer pour valider la réservation');
+            return;
+        }
+        modalSignaturePad.closeBox(e);
+    })
 })
