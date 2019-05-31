@@ -100,7 +100,7 @@ Station details
 }
 
 /*
-Modal ModalBox
+Modal box
 */
 .modal-box {
     position: fixed;
@@ -122,4 +122,9 @@ Modal ModalBox
     max-height: calc(100vh - 20px);
     padding: 20px;
     background-color: #FFF;
+}
+
+#signature-pad-canvas {
+    position: relative;
+    border: 1px solid black
 }
