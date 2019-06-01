@@ -20,13 +20,15 @@
                     e.name === 'QuotaExceededError' ||
                     e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
                     storage.length !== 0;
-                )
             }
         }
 
-        serializeIdentity() {
-            return {firstName: this.reservationForm.firstName.value,
-                    lastName: this.reservationForm.lastName.value}
+        storeUserIdentity() {
+            if (!this.isStorageAvailable('localStorage')) {
+                return;
+            }
+            localStorage.setItem('firstName', this.reservationForm.firstName.value);
+            localStorage.setItem('lastName', this.reservationForm.lastName.value);
         }
     }
 
