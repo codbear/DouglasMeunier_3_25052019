@@ -30,6 +30,16 @@
             localStorage.setItem('firstName', this.reservationForm.firstName.value);
             localStorage.setItem('lastName', this.reservationForm.lastName.value);
         }
+
+        recoverUserIdentity() {
+            if (!this.isStorageAvailable('localStorage')) {
+                return;
+            }
+            let firstName = localStorage.getItem('firstName');
+            let lastName = localStorage.getItem('lastName');
+            this.reservationForm.firstName.value = firstName;
+            this.reservationForm.lastName.value = lastName;
+        }
     }
 
     window.Reservation = Reservation;
