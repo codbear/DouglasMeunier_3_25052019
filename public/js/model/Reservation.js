@@ -43,6 +43,13 @@
             this.reservationForm.lastName.value = storedLastName;
         }
 
+        storeReservationDetails() {
+            if (!this.isStorageAvailable('sessionStorage')) {
+                return;
+            }
+            sessionStorage.setItem('stationAddress', this.stationAddress);
+        }
+
         displayReservationDetails(userContainer, stationAddress) {
             this.reservationDetailsRoot = userContainer;
             this.stationAddress = stationAddress.innerText;
@@ -54,6 +61,7 @@
             this.reservationRemainingTime = document.createElement('p');
             this.reservationRemainingTime.textContent = 'Temps restant : ';
             this.reservationDetailsRoot.appendChild(this.reservationRemainingTime);
+            this.storeReservationDetails();
         }
     }
 
