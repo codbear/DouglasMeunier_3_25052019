@@ -60,5 +60,7 @@ document.addEventListener('DOMContentLoaded', function (){
         }
         modalSignaturePad.closeBox(e);
         reservation.storeUserIdentity();
+        const reservationStatus = document.querySelector('#reservation-status');
+        reservation.displayReservationDetails(reservationStatus, stationDetails.address);
     })
 })
