@@ -3,6 +3,8 @@
 
         constructor(reservationForm) {
             this.reservationForm = reservationForm;
+            this.firstName = this.reservationForm.firstName.value
+            this.lastName = this.reservationForm.lastName.value
         }
 
         isStorageAvailable(type) {
@@ -27,18 +29,31 @@
             if (!this.isStorageAvailable('localStorage')) {
                 return;
             }
-            localStorage.setItem('firstName', this.reservationForm.firstName.value);
-            localStorage.setItem('lastName', this.reservationForm.lastName.value);
+            localStorage.setItem('firstName', this.firstName);
+            localStorage.setItem('lastName', this.lastName);
         }
 
         recoverUserIdentity() {
             if (!this.isStorageAvailable('localStorage')) {
                 return;
             }
-            let firstName = localStorage.getItem('firstName');
-            let lastName = localStorage.getItem('lastName');
-            this.reservationForm.firstName.value = firstName;
-            this.reservationForm.lastName.value = lastName;
+            let storedFirstName = localStorage.getItem('firstName');
+            let storedLastName = localStorage.getItem('lastName');
+            this.reservationForm.firstName.value = storedFirstName;
+            this.reservationForm.lastName.value = storedLastName;
+        }
+
+        displayReservationDetails(userContainer, stationAddress) {
+            this.reservationDetailsRoot = userContainer;
+            this.stationAddress = stationAddress.innerText;
+            this.reservationDetailsRoot.innerHTML = '';
+            this.reservationStatus = document.createElement('p');
+            this.reservationStatus.textContent = 'Vélo réserver à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName;
+            this.reservationDetailsRoot.appendChild(this.reservationStatus);
+            this.reservationDetailsRoot.appendChild(document.createElement('br'));
+            this.reservationRemainingTime = document.createElement('p');
+            this.reservationRemainingTime.textContent = 'Temps restant : ';
+            this.reservationDetailsRoot.appendChild(this.reservationRemainingTime);
         }
     }
 
