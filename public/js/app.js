@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const stationsMap = document.querySelector('#stations-map');
     const reservationForm = document.querySelector('#reservation-form');
-    const reservation = new window.Reservation(reservationForm);
+    const reservationStatus = document.querySelector('#reservation-status');
+    const reservation = new window.Reservation(reservationForm, reservationStatus);
     reservation.recoverUserIdentity();
+    reservation.recoverReservationDetails();
     const callToAction = document.querySelector('#call-to-action');
     const stationDetails = new window.StationDetails(document.querySelector('#station-details'));
 
@@ -60,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function (){
         }
         modalSignaturePad.closeBox(e);
         reservation.storeUserIdentity();
-        const reservationStatus = document.querySelector('#reservation-status');
-        reservation.displayReservationDetails(reservationStatus, stationDetails.address);
+        reservation.displayReservationDetails(stationDetails.address.innerHTML);
     })
 })
