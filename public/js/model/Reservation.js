@@ -1,8 +1,9 @@
 (function(window, document) {
     class Reservation {
 
-        constructor(reservationForm) {
+        constructor(reservationForm, reservationDetailsRoot) {
             this.reservationForm = reservationForm;
+            this.reservationDetailsRoot = reservationDetailsRoot;
             this.firstName = this.reservationForm.firstName.value
             this.lastName = this.reservationForm.lastName.value
         }
@@ -50,9 +51,18 @@
             sessionStorage.setItem('stationAddress', this.stationAddress);
         }
 
-        displayReservationDetails(userContainer, stationAddress) {
-            this.reservationDetailsRoot = userContainer;
-            this.stationAddress = stationAddress.innerText;
+        recoverReservationDetails() {
+            if (!this.isStorageAvailable('sessionStorage')) {
+                return;
+            }
+            if (!sessionStorage.getItem('stationAddress')) {
+                return;
+            }
+            this.displayReservationDetails(sessionStorage.getItem('stationAddress'), true);
+        }
+
+        displayReservationDetails(stationAddress, shouldRefresh = false) {
+            this.stationAddress = stationAddress;
             this.reservationDetailsRoot.innerHTML = '';
             this.reservationStatus = document.createElement('p');
             this.reservationStatus.textContent = 'Vélo réserver à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName;
@@ -61,7 +71,7 @@
             this.reservationRemainingTime = document.createElement('p');
             this.reservationRemainingTime.textContent = 'Temps restant : ';
             this.reservationDetailsRoot.appendChild(this.reservationRemainingTime);
-            this.storeReservationDetails();
+            if (!shouldRefresh) this.storeReservationDetails();
         }
     }
 
