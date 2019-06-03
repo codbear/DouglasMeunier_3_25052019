@@ -52,12 +52,12 @@
 
         createNavigation() {
             this.nextButton = document.createElement('i');
-            this.nextButton.classList.add('cdw-slider-nextBtn', 'material-icons', 'medium');
             this.nextButton.textContent = 'chevron_right';
+            this.nextButton.classList.add('cdw-slider-nextBtn', 'material-icons', 'medium', 'blue', 'white-text', 'darken-1');
             this.root.appendChild(this.nextButton);
             this.prevButton = document.createElement('i');
-            this.prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium');
             this.prevButton.textContent = 'chevron_left';
+            this.prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium', 'blue', 'white-text', 'darken-1');
             this.root.appendChild(this.prevButton);
             const moveNextBound = this.moveNext.bind(this);
             this.nextButton.addEventListener('click', moveNextBound);

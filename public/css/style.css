@@ -49,8 +49,6 @@ Slider
 .cdw-slider-nextBtn, .cdw-slider-prevBtn {
     position: absolute;
     text-align: center;
-    background: #1e88e5;
-    color: #fff;
     border-radius: 50%;
     top: 50%;
     margin-top: -29px;
