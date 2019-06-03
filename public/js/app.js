@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function (){
             return;
         }
         modalSignaturePad.closeBox(e);
-        reservation.storeUserIdentity();
         reservation.displayReservationDetails(stationDetails.address.innerHTML);
     })
 })

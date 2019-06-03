@@ -4,8 +4,6 @@
         constructor(reservationForm, reservationDetailsRoot) {
             this.reservationForm = reservationForm;
             this.reservationDetailsRoot = reservationDetailsRoot;
-            this.firstName = this.reservationForm.firstName.value
-            this.lastName = this.reservationForm.lastName.value
         }
 
         isStorageAvailable(type) {
@@ -38,12 +36,16 @@
             if (!this.isStorageAvailable('localStorage')) {
                 return;
             }
-            let storedFirstName = localStorage.getItem('firstName');
-            let storedLastName = localStorage.getItem('lastName');
-            this.firstName = storedFirstName;
-            this.lastName = storedLastName;
-            this.reservationForm.firstName.value = storedFirstName;
-            this.reservationForm.lastName.value = storedLastName;
+            if (localStorage.getItem('firstName')) {
+                let storedFirstName = localStorage.getItem('firstName');
+                this.firstName = storedFirstName;
+                this.reservationForm.firstName.value = storedFirstName;
+            }
+            if (localStorage.getItem('lastName')) {
+                let storedLastName = localStorage.getItem('lastName');
+                this.lastName = storedLastName;
+                this.reservationForm.lastName.value = storedLastName;
+            }
         }
 
         storeReservationDetails() {
@@ -64,6 +66,9 @@
         }
 
         displayReservationDetails(stationAddress, shouldJustRefresh = false) {
+            this.firstName = this.reservationForm.firstName.value;
+            this.lastName = this.reservationForm.lastName.value;
+            this.storeUserIdentity();
             this.stationAddress = stationAddress;
             this.reservationDetailsRoot.innerHTML = '';
             this.reservationStatusDisplay = document.createElement('p');
