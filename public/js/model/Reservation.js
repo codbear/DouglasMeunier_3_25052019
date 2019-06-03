@@ -40,6 +40,8 @@
             }
             let storedFirstName = localStorage.getItem('firstName');
             let storedLastName = localStorage.getItem('lastName');
+            this.firstName = storedFirstName;
+            this.lastName = storedLastName;
             this.reservationForm.firstName.value = storedFirstName;
             this.reservationForm.lastName.value = storedLastName;
         }
