@@ -15,6 +15,7 @@
             this.onWindowResize();
             const onWindowResizeBound = this.onWindowResize.bind(this);
             window.addEventListener('resize', onWindowResizeBound);
+            this.userContainer.style.display = null;
         }
 
         get slidesVisible() {
