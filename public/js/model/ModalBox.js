@@ -27,7 +27,6 @@
         }
 
         closeBox(event) {
-            console.log("ok");
             if (this.modalBox === null) return;
             event.preventDefault();
             this.modalBox.style.display = 'none';

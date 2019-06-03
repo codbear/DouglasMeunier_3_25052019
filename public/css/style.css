@@ -82,9 +82,15 @@ Map
     height: 90vh;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
     #stations-map {
         margin: 0 3% 0 2%;
+    }
+}
+
+@media (max-width: 767px) {
+    #stations-map {
+        height: 45vh;
     }
 }
 

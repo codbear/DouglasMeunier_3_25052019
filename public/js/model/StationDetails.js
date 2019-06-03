@@ -48,13 +48,13 @@
             }
             if (station.available_bike_stands > 1) {
                 this.availableBikeStands.textContent = station.available_bike_stands + ' places disponibles';
-                this.availableBikes.classList.remove('red-text');
+                this.availableBikeStands.classList.remove('red-text');
             } else if (station.available_bike_stands === 1) {
                 this.availableBikeStands.textContent = station.available_bike_stands + ' place disponible';
-                this.availableBikes.classList.remove('red-text');
+                this.availableBikeStands.classList.remove('red-text');
             } else {
                 this.availableBikeStands.textContent = 'Aucune place disponible';
-                this.availableBikes.classList.add('red-text');
+                this.availableBikeStands.classList.add('red-text');
             }
         }
     }

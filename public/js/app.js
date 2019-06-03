@@ -3,7 +3,14 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const stationsMap = document.querySelector('#stations-map');
     const reservationForm = document.querySelector('#reservation-form');
+    const reservationStatus = document.querySelector('#reservation-status');
+    const reservation = new window.Reservation(reservationForm, reservationStatus);
+    reservation.recoverUserIdentity();
+    reservation.recoverReservationDetails();
     const callToAction = document.querySelector('#call-to-action');
+    const stationDetails = new window.StationDetails(document.querySelector('#station-details'));
+
+
     const initMap = async function() {
         let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
         await map.loadMap(stationsMap);
@@ -14,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function (){
         })
         requestStationsList.execute(function(parsedDatas) {
             let stationsList = parsedDatas;
-            let stationDetails = new window.StationDetails(document.querySelector('#station-details'));
             stationsList.forEach((station) => {
                 function onClick() {
                     callToAction.style.display = 'none';
@@ -55,5 +61,7 @@ document.addEventListener('DOMContentLoaded', function (){
             return;
         }
         modalSignaturePad.closeBox(e);
+        reservation.storeUserIdentity();
+        reservation.displayReservationDetails(stationDetails.address.innerHTML);
     })
 })
