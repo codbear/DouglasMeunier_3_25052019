@@ -64,14 +64,35 @@
         displayReservationDetails(stationAddress, shouldRefresh = false) {
             this.stationAddress = stationAddress;
             this.reservationDetailsRoot.innerHTML = '';
-            this.reservationStatus = document.createElement('p');
-            this.reservationStatus.textContent = 'Vélo réserver à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName;
-            this.reservationDetailsRoot.appendChild(this.reservationStatus);
-            this.reservationDetailsRoot.appendChild(document.createElement('br'));
-            this.reservationRemainingTime = document.createElement('p');
-            this.reservationRemainingTime.textContent = 'Temps restant : ';
-            this.reservationDetailsRoot.appendChild(this.reservationRemainingTime);
+            this.reservationStatusDisplay = document.createElement('p');
+            this.reservationStatusDisplay.innerHTML = 'Vélo réserver à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName + '.<br/><br/>';
+            this.reservationDetailsRoot.appendChild(this.reservationStatusDisplay);
+            this.remainingTimeDisplay = document.createElement('p');
+            this.reservationDetailsRoot.appendChild(this.remainingTimeDisplay)
+            this.startReservationTimer()
             if (!shouldRefresh) this.storeReservationDetails();
+        }
+
+        startReservationTimer() {
+            if (sessionStorage.getItem('remainingTime')) {
+                this.remainingTime = sessionStorage.getItem('remainingTime');
+            } else {
+                this.remainingTime = 1200;
+            }
+            const timer = function() {
+                if (this.remainingTime <= 0) {
+                    this.remainingTimeDisplay.innerHTML = 'Temps restant : <span class="badge red white-text">Expirée</span>';
+                    clearInterval(reservationTimer);
+                    sessionStorage.clear();
+                    return;
+                }
+                this.remainingTime -= 1;
+                sessionStorage.setItem('remainingTime', this.remainingTime);
+                let remainingMinutes = Math.trunc(this.remainingTime/60);
+                let remainingSecondes = this.remainingTime%60;
+                this.remainingTimeDisplay.innerHTML = 'Temps restant : ' + remainingMinutes + ' min ' + remainingSecondes + 's';
+            }
+            let reservationTimer = setInterval(timer.bind(this), 1000);
         }
     }
 
