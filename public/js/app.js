@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function (){
     const callToAction = document.querySelector('#call-to-action');
     const stationDetails = new window.StationDetails(document.querySelector('#station-details'));
 
-
     const initMap = async function() {
         let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
         await map.loadMap(stationsMap);
@@ -41,7 +40,8 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
-    const signaturePad = new window.SignaturePad(document.querySelector('#signature-pad-canvas'), 450, 400);
+    const signaturePadCanvas = document.querySelector('#signature-pad-canvas')
+    const signaturePad = new window.SignaturePad(signaturePadCanvas, 450, 400);
     bookBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (reservationForm.lastName.value !== "" && reservationForm.firstName.value !== "") {
@@ -57,7 +57,9 @@ document.addEventListener('DOMContentLoaded', function (){
     signaturePadValidationBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (signaturePad.isEmpty()) {
-            alert('Vous devez signer pour valider la réservation');
+            signaturePadCanvas.style.borderColor = 'red';
+            document.querySelector('#signature-error').style.display = null;
+            modalSignaturePad.appendChild(signatureError);
             return;
         }
         modalSignaturePad.closeBox(e);
