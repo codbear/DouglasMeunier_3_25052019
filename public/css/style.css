@@ -29,6 +29,7 @@ Slider
 .cdw-slider {
     position: relative;
     overflow: hidden;
+    margin-bottom: 5%;
 }
 
 .cdw-slider-container {
@@ -67,7 +68,7 @@ Slider
 }
 
 .slide {
-    padding: 0.5% 10%;
+    padding: 0.5% 15%;
     width: 100%;
     max-height: 70vh;
     border-radius: 5%;
