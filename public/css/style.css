@@ -1,6 +1,10 @@
 /*
 Framework
 */
+.brand-logo {
+    margin-left: 20px;
+}
+
 .card-title {
     font-family: 'Molle', cursive;
     color: #1E88E5;
