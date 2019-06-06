@@ -59,10 +59,9 @@
             if (!this.isStorageAvailable('sessionStorage')) {
                 return;
             }
-            if (!sessionStorage.getItem('stationAddress')) {
-                return;
+            if (sessionStorage.getItem('stationAddress')) {
+                this.displayReservationDetails(sessionStorage.getItem('stationAddress'), true);
             }
-            this.displayReservationDetails(sessionStorage.getItem('stationAddress'), true);
         }
 
         displayReservationDetails(stationAddress, shouldJustRefresh = false) {
@@ -96,7 +95,7 @@
                 }
                 let remainingMinutes = Math.trunc(this.remainingTime/60);
                 let remainingSecondes = Math.round(this.remainingTime%60);
-                this.remainingTimeDisplay.innerHTML = 'Temps restant : ' + remainingMinutes + ' min ' + remainingSecondes + 's';
+                this.remainingTimeDisplay.innerHTML = 'Temps restant : ' + remainingMinutes + ' min ' + remainingSecondes + ' s';
             }
             if (sessionStorage.getItem('reservationDate')) {
                 this.reservationDate = new Date(sessionStorage.getItem('reservationDate'));
