@@ -42,6 +42,15 @@ document.addEventListener('DOMContentLoaded', function (){
     const modalSignaturePad = new window.ModalBox(bookBtn);
     const signaturePadCanvas = document.querySelector('#signature-pad-canvas')
     const signaturePad = new window.SignaturePad(signaturePadCanvas, 450, 400);
+    reservationForm.addEventListener('input', (e) => {
+        if (reservationForm.lastName.value === "" || reservationForm.firstName.value === "") {
+            bookBtn.disabled = true ;
+        } else {
+            bookBtn.disabled = false;
+        }
+
+    })
+
     bookBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (reservationForm.lastName.value !== "" && reservationForm.firstName.value !== "") {

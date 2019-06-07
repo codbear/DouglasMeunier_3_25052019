@@ -17,7 +17,7 @@
 
         openBox(event) {
             event.preventDefault();
-            this.modalBox = document.querySelector(event.target.dataset.target);
+            this.modalBox = document.querySelector(this.triggerBtn.dataset.target);
             this.contentWrapper = this.modalBox.querySelector('.modal-box-wrapper');
             this.closeBtn = this.modalBox.querySelector('.close-modal-box');
             this.modalBox.style.display = null;
