@@ -58,8 +58,7 @@ document.addEventListener('DOMContentLoaded', function (){
         e.preventDefault();
         if (signaturePad.isEmpty()) {
             signaturePadCanvas.style.borderColor = 'red';
-            document.querySelector('#signature-error').style.display = null;
-            modalSignaturePad.appendChild(signatureError);
+            document.querySelector('#signature-error').style.visibility = 'visible';
             return;
         }
         modalSignaturePad.closeBox(e);

@@ -71,7 +71,7 @@
             this.stationAddress = stationAddress;
             this.reservationDetailsRoot.innerHTML = '';
             this.reservationStatusDisplay = document.createElement('p');
-            this.reservationStatusDisplay.innerHTML = 'Vélo réserver à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName + '.<br/><br/>';
+            this.reservationStatusDisplay.innerHTML = 'Vélo réservé à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName + '.<br/><br/>';
             this.reservationDetailsRoot.appendChild(this.reservationStatusDisplay);
             this.remainingTimeDisplay = document.createElement('p');
             this.reservationDetailsRoot.appendChild(this.remainingTimeDisplay)
@@ -100,7 +100,6 @@
             if (sessionStorage.getItem('reservationDate')) {
                 this.reservationDate = new Date(sessionStorage.getItem('reservationDate'));
             }
-            timer.bind(this);
             let reservationTimer = setInterval(timer.bind(this), 1000);
         }
     }

@@ -40,7 +40,7 @@
             const drawBound = this.draw.bind(this);
             this.canvas.addEventListener('mousedown', (e) => {
                 this.canvas.style.borderColor = 'black';
-                document.querySelector('#signature-error').style.display = 'none';
+                document.querySelector('#signature-error').style.visibility = 'hidden';
                 this.ctx.moveTo(e.layerX, e.layerY);
                 this.canvas.addEventListener('mousemove', drawBound);
             });
