@@ -88,7 +88,7 @@
                 let timestamp = new Date();
                 this.remainingTime = 1200 - ((timestamp - this.reservationDate) / 1000);
                 if (this.remainingTime <= 0) {
-                    this.remainingTimeDisplay.innerHTML = 'Temps restant : <span class="badge red white-text">Expirée</span>';
+                    this.remainingTimeDisplay.innerHTML = '<span class="badge red white-text">Expirée</span>';
                     clearInterval(reservationTimer);
                     sessionStorage.clear();
                     return;
