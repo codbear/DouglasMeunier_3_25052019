@@ -43,11 +43,15 @@
             this.canvas.style.borderColor = 'red';
         }
 
+        hideErrorText() {
+            this.canvas.style.borderColor = 'black';
+            this.errorText.style.visibility = 'hidden';
+        }
+
         initListeners() {
             const drawBound = this.draw.bind(this);
             this.canvas.addEventListener('mousedown', (e) => {
-                this.canvas.style.borderColor = 'black';
-                this.errorText.style.visibility = 'hidden';
+                this.hideErrorText();
                 this.ctx.moveTo(e.layerX, e.layerY);
                 this.canvas.addEventListener('mousemove', drawBound);
             });
