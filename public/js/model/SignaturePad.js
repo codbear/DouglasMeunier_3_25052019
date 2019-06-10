@@ -2,11 +2,12 @@
 
     class SignaturePad {
 
-        constructor(canvasElement, width, height, resetButton, lineWidth = '1.5') {
+        constructor(canvasElement, width, height, resetButton, errorText, lineWidth = '1.5') {
             this.canvas = canvasElement;
             this.canvas.width = width;
             this.canvas.height = height;
             this.resetButton = resetButton;
+            this.errorText = errorText;
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
             this.ctx.beginPath();
@@ -37,11 +38,16 @@
             return pixelsMatrix.every(isPixelNull);
         }
 
+        displayErrorText() {
+            this.errorText.style.visibility = 'visible';
+            this.canvas.style.borderColor = 'red';
+        }
+
         initListeners() {
             const drawBound = this.draw.bind(this);
             this.canvas.addEventListener('mousedown', (e) => {
                 this.canvas.style.borderColor = 'black';
-                document.querySelector('#signature-error').style.visibility = 'hidden';
+                this.errorText.style.visibility = 'hidden';
                 this.ctx.moveTo(e.layerX, e.layerY);
                 this.canvas.addEventListener('mousemove', drawBound);
             });
