@@ -40,8 +40,9 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
-    const signaturePadCanvas = document.querySelector('#signature-pad-canvas')
-    const signaturePad = new window.SignaturePad(signaturePadCanvas, 450, 400);
+    const signatureCanvas = document.querySelector('#signature-pad-canvas')
+    const signatureResetBtn = document.querySelector('#signature-pad-reset-btn');
+    const signaturePad = new window.SignaturePad(signatureCanvas, 450, 400, signatureResetBtn);
     reservationForm.addEventListener('input', (e) => {
         if (reservationForm.lastName.value === "" || reservationForm.firstName.value === "") {
             bookBtn.disabled = true ;
@@ -57,12 +58,7 @@ document.addEventListener('DOMContentLoaded', function (){
             modalSignaturePad.openBox(e);
         }
     })
-    const signaturePadResetBtn = document.querySelector('#signature-pad-reset-btn');
     const signaturePadValidationBtn = document.querySelector('#signature-pad-validation-btn');
-    signaturePadResetBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        signaturePad.clearPad();
-    });
     signaturePadValidationBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (signaturePad.isEmpty()) {
