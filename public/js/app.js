@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', function (){
             let stationsList = parsedDatas;
             stationsList.forEach((station) => {
                 function onClick() {
-                    stationDetails.setDetails(station);
-                    stationDetails.createHtmlStructure();
+                    stationDetails.displayDetails(station);
                     reservationForm.style.display = null;
                 }
                 let marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);

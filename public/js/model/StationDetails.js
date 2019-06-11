@@ -59,6 +59,11 @@
                 this.availableBikeStands.classList.add('red-text');
             }
         }
+
+        displayDetails(station) {
+            this.setDetails(station);
+            this.createHtmlStructure();
+        }
     }
 
     window.StationDetails = StationDetails;
