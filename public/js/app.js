@@ -40,10 +40,8 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
-    const signatureCanvas = document.querySelector('#signature-pad-canvas')
-    const signatureResetBtn = document.querySelector('#signature-pad-reset-btn');
-    const signatureErrorText = document.querySelector('#signature-error')
-    const signaturePad = new window.SignaturePad(signatureCanvas, 450, 400, signatureResetBtn, signatureErrorText);
+    const signaturePadContainer = document.querySelector('#modal-signature-pad');
+    const signaturePad = new window.SignaturePad(signaturePadContainer, 450, 400);
     reservationForm.addEventListener('input', (e) => {
         if (reservationForm.lastName.value === "" || reservationForm.firstName.value === "") {
             bookBtn.disabled = true ;
