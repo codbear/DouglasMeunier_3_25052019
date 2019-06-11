@@ -1,8 +1,10 @@
 (function(window, document) {
     class StationDetails {
 
-        constructor(userContainer) {
-            this.userContainer = userContainer;
+        constructor(stationDetailsContainer) {
+            this.stationDetailsContainer = stationDetailsContainer;
+            this.callToAction = this.stationDetailsContainer.querySelector('.call-to-action');
+            this.stationDetails = this.stationDetailsContainer.querySelector('#station-details');
             this.createHtmlElements();
         }
 
@@ -14,11 +16,11 @@
         }
 
         createHtmlStructure() {
-            document.querySelector('#call-to-action').style.display = 'none';
-            this.userContainer.appendChild(this.status);
-            this.userContainer.appendChild(this.address);
-            this.userContainer.appendChild(this.availableBikes);
-            this.userContainer.appendChild(this.availableBikeStands);
+            document.querySelector('.call-to-action').style.display = 'none';
+            this.stationDetails.appendChild(this.status);
+            this.stationDetails.appendChild(this.address);
+            this.stationDetails.appendChild(this.availableBikes);
+            this.stationDetails.appendChild(this.availableBikeStands);
         }
 
         setDetails(station) {

@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', function (){
-    let welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'));
-
     const stationsMap = document.querySelector('#stations-map');
+    const stationDetailsContainer = document.querySelector('#station-details-container');
     const reservationForm = document.querySelector('#reservation-form');
     const bookBtn = document.querySelector('#reservation-form-book-btn');
+    const signaturePadContainer = document.querySelector('#modal-signature-pad');
     const reservationStatus = document.querySelector('#reservation-status');
+
+    const welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'));
+    const stationDetails = new window.StationDetails(stationDetailsContainer);
     const reservation = new window.Reservation(reservationForm, bookBtn, reservationStatus);
-    reservation.recoverUserIdentity();
-    reservation.recoverReservationDetails();
-    const callToAction = document.querySelector('#call-to-action');
-    const stationDetails = new window.StationDetails(document.querySelector('#station-details'));
+    const modalSignaturePad = new window.ModalBox(bookBtn);
+    const signaturePad = new window.SignaturePad(signaturePadContainer, 450, 400);
 
     const initMap = async function() {
         let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
@@ -23,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function (){
             let stationsList = parsedDatas;
             stationsList.forEach((station) => {
                 function onClick() {
-                    callToAction.style.display = 'none';
                     stationDetails.setDetails(station);
                     stationDetails.createHtmlStructure();
                     reservationForm.style.display = null;
@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', function (){
             console.error(status + statusText);
         })
     }
+
     if (stationsMap !== null) {
         initMap();
     }
 
-    const modalSignaturePad = new window.ModalBox(bookBtn);
-    const signaturePadContainer = document.querySelector('#modal-signature-pad');
-    const signaturePad = new window.SignaturePad(signaturePadContainer, 450, 400);
+    reservation.recoverUserIdentity();
+    reservation.recoverReservationDetails();
 
     bookBtn.addEventListener('click', (e) => {
         e.preventDefault();
