@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function (){
             'contract': 'nantes',
             'apiKey': '3ce01edd3b8a04bb2a11192cf0fc8d3075b204cc'
         })
-        requestStationsList.execute(function(parsedDatas) {
+        requestStationsList.execute((parsedDatas) => {
             let stationsList = parsedDatas;
             stationsList.forEach((station) => {
                 function onClick() {
@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function (){
                 let marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
             })
             map.centerOnMarkers();
-        }, function(status, statusText) {
+        }, (status, statusText) => {
             stationsMap.innerHTML = '<p>Une erreur s\'est produite lors du chargement de la carte</p>';
-            console.error(status + statusText);
+            console.error(status + ' ' + statusText);
         })
     }
 
@@ -50,13 +50,7 @@ document.addEventListener('DOMContentLoaded', function (){
             modalSignaturePad.openBox(e);
         }
     })
-    const signaturePadValidationBtn = document.querySelector('#signature-pad-validation-btn');
-    signaturePadValidationBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (signaturePad.isEmpty()) {
-            signaturePad.displayErrorText();
-            return;
-        }
+    signaturePad.onValidation((e) => {
         modalSignaturePad.closeBox(e);
         reservation.displayReservationDetails(stationDetails.address.innerHTML);
     })

@@ -2,11 +2,12 @@
 
     class SignaturePad {
 
-        constructor(container, width, height, lineWidth = '1.5') {
+        constructor(container, width, height, onValidation, lineWidth = '1.5') {
             this.canvas = container.querySelector('.sp-canvas');
             this.canvas.width = width;
             this.canvas.height = height;
             this.resetButton = container.querySelector('.sp-reset-btn');
+            this.validationButton = container.querySelector('.sp-validation-btn');
             this.errorText = container.querySelector('.sp-error-txt');
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
@@ -61,6 +62,17 @@
             this.resetButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.clearPad();
+            })
+        }
+
+        onValidation(callback) {
+            this.validationButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.isEmpty()) {
+                    this.displayErrorText();
+                    return;
+                }
+                callback(e);
             })
         }
     }
