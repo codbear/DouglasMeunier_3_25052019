@@ -5,6 +5,8 @@
             this.reservationForm = reservationForm;
             this.bookBtn = bookBtn;
             this.reservationDetailsRoot = reservationDetailsRoot;
+            this.recoverUserIdentity();
+            this.recoverReservationDetails();
             this.toggleBookButtonState();
         }
 

@@ -40,9 +40,6 @@ document.addEventListener('DOMContentLoaded', function (){
         initMap();
     }
 
-    reservation.recoverUserIdentity();
-    reservation.recoverReservationDetails();
-
     bookBtn.addEventListener('click', (e) => {
         e.preventDefault();
         if (reservationForm.lastName.value !== "" && reservationForm.firstName.value !== "") {
