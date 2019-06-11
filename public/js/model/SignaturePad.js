@@ -3,11 +3,11 @@
     class SignaturePad {
 
         constructor(container, width, height, lineWidth = '1.5') {
-            this.canvas = container.querySelector('canvas');
+            this.canvas = container.querySelector('.sp-canvas');
             this.canvas.width = width;
             this.canvas.height = height;
-            this.resetButton = container.querySelector('#signature-pad-reset-btn');
-            this.errorText = container.querySelector('#signature-pad-error-txt');
+            this.resetButton = container.querySelector('.sp-reset-btn');
+            this.errorText = container.querySelector('.sp-error-txt');
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
             this.ctx.beginPath();

@@ -133,7 +133,7 @@ Modal box
     background-color: #FFF;
 }
 
-#signature-pad-canvas {
+.sp-canvas {
     position: relative;
     border: 1px solid black
 }
