@@ -13,21 +13,21 @@ document.addEventListener('DOMContentLoaded', function (){
     const signaturePad = new window.SignaturePad(signaturePadContainer, 450, 400);
 
     const initMap = async function() {
-        let map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
+        const map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
         await map.loadMap(stationsMap);
-        let requestStationsList = new window.Request('https://api.jcdecaux.com/vls/v1/stations')
+        const requestStationsList = new window.Request('https://api.jcdecaux.com/vls/v1/stations')
         requestStationsList.setParams({
             'contract': 'nantes',
             'apiKey': '3ce01edd3b8a04bb2a11192cf0fc8d3075b204cc'
         })
         requestStationsList.execute((parsedDatas) => {
-            let stationsList = parsedDatas;
+            const stationsList = parsedDatas;
             stationsList.forEach((station) => {
                 function onClick() {
                     stationDetails.displayDetails(station);
                     reservation.displayReservationForm();
                 }
-                let marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
+                const marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
             })
             map.centerOnMarkers();
         }, (status, statusText) => {
