@@ -66,6 +66,10 @@
             }
         }
 
+        displayReservationForm() {
+            this.reservationForm.style.display = null;
+        }
+
         toggleBookButtonState() {
             if (this.firstName !== "" && this.lastName !== "") {
                 this.bookBtn.disabled = false;
