@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function (){
     const stationsMap = document.querySelector('#stations-map');
     const stationDetailsContainer = document.querySelector('#station-details-container');
     const reservationForm = document.querySelector('#reservation-form');
-    const bookBtn = document.querySelector('#reservation-form-book-btn');
+    const bookBtn = document.querySelector('#book-btn');
     const signaturePadContainer = document.querySelector('#modal-signature-pad');
     const reservationStatus = document.querySelector('#reservation-status');
 
