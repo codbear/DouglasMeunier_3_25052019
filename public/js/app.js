@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function (){
             })
             map.centerOnMarkers();
         }, function(status, statusText) {
+            stationsMap.innerHTML = '<p>Une erreur s\'est produite lors du chargement de la carte</p>';
             console.error(status + statusText);
         })
     }
