@@ -39,12 +39,8 @@ document.addEventListener('DOMContentLoaded', function (){
     if (stationsMap !== null) {
         initMap();
     }
-
-    bookBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (reservationForm.lastName.value !== "" && reservationForm.firstName.value !== "") {
-            modalSignaturePad.openBox(e);
-        }
+    reservation.onBooking((e) => {
+        modalSignaturePad.openBox(e);
     })
     signaturePad.onValidation((e) => {
         modalSignaturePad.closeBox(e);

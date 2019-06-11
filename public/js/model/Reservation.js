@@ -77,10 +77,19 @@
                 this.bookBtn.disabled = false;
             }
             this.reservationForm.addEventListener('input', (e) => {
-                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value) {
+                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value !== "") {
                     this.bookBtn.disabled = false;
                 } else {
                     this.bookBtn.disabled = true;
+                }
+            })
+        }
+
+        onBooking(callback) {
+            this.bookBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value !== "") {
+                    callback(e);
                 }
             })
         }
