@@ -1,9 +1,11 @@
 (function(window, document) {
     class Reservation {
 
-        constructor(reservationForm, reservationDetailsRoot) {
+        constructor(reservationForm, bookBtn, reservationDetailsRoot) {
             this.reservationForm = reservationForm;
+            this.bookBtn = bookBtn;
             this.reservationDetailsRoot = reservationDetailsRoot;
+            this.toggleBookButtonState();
         }
 
         isStorageAvailable(type) {
@@ -62,6 +64,19 @@
             if (sessionStorage.getItem('stationAddress')) {
                 this.displayReservationDetails(sessionStorage.getItem('stationAddress'), true);
             }
+        }
+
+        toggleBookButtonState() {
+            if (this.firstName !== "" && this.lastName !== "") {
+                this.bookBtn.disabled = false;
+            }
+            this.reservationForm.addEventListener('input', (e) => {
+                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value) {
+                    this.bookBtn.disabled = false;
+                } else {
+                    this.bookBtn.disabled = true;
+                }
+            })
         }
 
         displayReservationDetails(stationAddress, shouldJustRefresh = false) {

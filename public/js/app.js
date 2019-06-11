@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const stationsMap = document.querySelector('#stations-map');
     const reservationForm = document.querySelector('#reservation-form');
+    const bookBtn = document.querySelector('#reservation-form-book-btn');
     const reservationStatus = document.querySelector('#reservation-status');
-    const reservation = new window.Reservation(reservationForm, reservationStatus);
+    const reservation = new window.Reservation(reservationForm, bookBtn, reservationStatus);
     reservation.recoverUserIdentity();
     reservation.recoverReservationDetails();
     const callToAction = document.querySelector('#call-to-action');
@@ -38,18 +39,9 @@ document.addEventListener('DOMContentLoaded', function (){
         initMap();
     }
 
-    const bookBtn = document.querySelector('#reservation-form-book-btn');
     const modalSignaturePad = new window.ModalBox(bookBtn);
     const signaturePadContainer = document.querySelector('#modal-signature-pad');
     const signaturePad = new window.SignaturePad(signaturePadContainer, 450, 400);
-    reservationForm.addEventListener('input', (e) => {
-        if (reservationForm.lastName.value === "" || reservationForm.firstName.value === "") {
-            bookBtn.disabled = true ;
-        } else {
-            bookBtn.disabled = false;
-        }
-
-    })
 
     bookBtn.addEventListener('click', (e) => {
         e.preventDefault();
