@@ -9,12 +9,14 @@
             }, userOptions);
             this.isSmallScreen = false;
             this.currentSlide = 0;
+            this.moveNext = this.moveNext.bind(this);
+            this.movePrev = this.movePrev.bind(this);
+            this.onWindowResize = this.onWindowResize.bind(this);
             this.createHtmlStructure();
             this.setStyle();
             this.createNavigation();
             this.onWindowResize();
-            const onWindowResizeBound = this.onWindowResize.bind(this);
-            window.addEventListener('resize', onWindowResizeBound);
+            window.addEventListener('resize', this.onWindowResize);
             this.shouldAutoScroll = shouldAutoScroll;
             this.autoScrollInterval = autoScrollInterval;
             if (shouldAutoScroll) {
@@ -64,10 +66,8 @@
             this.prevButton.textContent = 'chevron_left';
             this.prevButton.classList.add('cdw-slider-prevBtn', 'material-icons', 'medium', 'blue', 'white-text', 'darken-1');
             this.root.appendChild(this.prevButton);
-            const moveNextBound = this.moveNext.bind(this);
-            this.nextButton.addEventListener('click', moveNextBound);
-            const movePrevBound = this.movePrev.bind(this);
-            this.prevButton.addEventListener('click', movePrevBound);
+            this.nextButton.addEventListener('click', this.moveNext);
+            this.prevButton.addEventListener('click', this.movePrev);
             this.root.addEventListener('keyup', e => {
                 if (e.key === 'ArrowRight' || e.key === 'Right') {
                     this.moveNext();
