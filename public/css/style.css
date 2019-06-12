@@ -71,20 +71,17 @@ Slider
     left: 20px;
 }
 
-.cdw-slider-pauseBtn {
+.cdw-slider-pauseBtn, .cdw-slider-playBtn {
     position: absolute;
     text-align: center;
     top: 1%;
     right: 20px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .cdw-slider-playBtn {
-    position: absolute;
-    text-align: center;
-    top: 1%;
     right: 80px;
-    cursor: pointer;
 }
 
 .slide {

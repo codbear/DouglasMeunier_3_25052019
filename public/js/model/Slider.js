@@ -94,11 +94,15 @@
         pauseAutoScroll() {
             clearInterval(this.autoScroller);
             this.autoScroller = undefined;
+            this.playButton.classList.remove('blue', 'darken-1', 'white-text')
+            this.pauseButton.classList.add('blue', 'darken-1', 'white-text')
         }
 
         startAutoScroll() {
             if (this.autoScroller === undefined) {
                 this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
+                this.pauseButton.classList.remove('blue', 'darken-1', 'white-text')
+                this.playButton.classList.add('blue', 'darken-1', 'white-text')
             }
         }
 
