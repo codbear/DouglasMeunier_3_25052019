@@ -81,12 +81,12 @@
                 this.pauseButton = document.createElement('i');
                 this.pauseButton.textContent = 'pause_circle_outline';
                 this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium', 'blue', 'darken-1', 'white-text');
-                this.root.appendChild(this.pauseButton);
-                this.pauseButton.addEventListener('click', this.pauseAutoScroll);
                 this.playButton = document.createElement('i');
                 this.playButton.textContent = 'play_circle_outline';
                 this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium', 'blue', 'darken-1', 'white-text');
+                this.root.appendChild(this.pauseButton);
                 this.root.appendChild(this.playButton);
+                this.pauseButton.addEventListener('click', this.pauseAutoScroll);
                 this.playButton.addEventListener('click', this.startAutoScroll);
             }
         }
@@ -134,6 +134,25 @@
             if (isSmallScreen !== this.isSmallScreen) {
                 this.isSmallScreen = isSmallScreen;
                 this.setStyle();
+                if (this.isSmallScreen) {
+                    this.pauseButton.classList.remove('medium');
+                    this.playButton.classList.remove('medium');
+                    this.nextButton.classList.remove('medium');
+                    this.prevButton.classList.remove('medium');
+                    this.pauseButton.classList.add('small');
+                    this.playButton.classList.add('small');
+                    this.nextButton.classList.add('small');
+                    this.prevButton.classList.add('small');
+                } else {
+                    this.pauseButton.classList.remove('small');
+                    this.playButton.classList.remove('small');
+                    this.nextButton.classList.remove('small');
+                    this.prevButton.classList.remove('small');
+                    this.pauseButton.classList.add('medium');
+                    this.playButton.classList.add('medium');
+                    this.nextButton.classList.add('medium');
+                    this.prevButton.classList.add('medium');
+                }
             }
         }
 
