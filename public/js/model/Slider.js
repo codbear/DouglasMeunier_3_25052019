@@ -137,13 +137,12 @@
             }
         }
 
-
         destruct() {
             window.removeEventListener('resize', this.onWindowResize);
             this.nextButton.removeEventListener('click', this.moveNext);
             this.prevButton.removeEventListener('click', this.movePrev);
-            this.pauseButton.addEventListener('click', this.pauseAutoScroll);
-            this.playButton.addEventListener('click', this.startAutoScroll);
+            this.pauseButton.removeEventListener('click', this.pauseAutoScroll);
+            this.playButton.removeEventListener('click', this.startAutoScroll);
         }
     }
 
