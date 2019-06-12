@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function (){
     const $signaturePadContainer = document.querySelector('#modal-signature-pad');
     const $reservationStatus = document.querySelector('#reservation-status');
 
-    const welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'));
+    const welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'), true);
     const stationDetails = new window.StationDetails($stationDetailsContainer);
     const reservation = new window.Reservation($reservationForm, $bookBtn, $reservationStatus);
     const modalSignaturePad = new window.ModalBox($bookBtn);

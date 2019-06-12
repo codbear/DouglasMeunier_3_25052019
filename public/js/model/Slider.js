@@ -1,7 +1,7 @@
 (function(window, document) {
     class Slider {
 
-        constructor(userContainer, userOptions = {}) {
+        constructor(userContainer, shouldAutoScroll = false, autoScrollInterval = 5000, userOptions = {}) {
             this.userContainer = userContainer;
             this.userOptions = Object.assign({}, {
                 slidesToScroll: 1,
@@ -15,6 +15,9 @@
             this.onWindowResize();
             const onWindowResizeBound = this.onWindowResize.bind(this);
             window.addEventListener('resize', onWindowResizeBound);
+            if (shouldAutoScroll) {
+                setInterval(this.autoScroll.bind(this), autoScrollInterval);
+            }
             this.userContainer.style.display = null;
         }
 
@@ -97,6 +100,10 @@
                 this.isSmallScreen = isSmallScreen;
                 this.setStyle();
             }
+        }
+
+        autoScroll() {
+            this.moveNext();
         }
 
         destruct() {
