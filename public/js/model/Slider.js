@@ -73,6 +73,14 @@
                     this.movePrev();
                 }
             })
+            this.pauseButton = document.createElement('i');
+            this.pauseButton.textContent = 'pause_circle_outline';
+            this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
+            this.root.appendChild(this.pauseButton);
+            this.playButton = document.createElement('i');
+            this.playButton.textContent = 'play_circle_outline';
+            this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
+            this.root.appendChild(this.playButton);
         }
 
         moveNext() {

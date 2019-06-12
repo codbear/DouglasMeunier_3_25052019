@@ -71,6 +71,22 @@ Slider
     left: 20px;
 }
 
+.cdw-slider-pauseBtn {
+    position: absolute;
+    text-align: center;
+    top: 1%;
+    right: 20px;
+    cursor: pointer;
+}
+
+.cdw-slider-playBtn {
+    position: absolute;
+    text-align: center;
+    top: 1%;
+    right: 80px;
+    cursor: pointer;
+}
+
 .slide {
     padding: 0.5% 15%;
     width: 100%;
