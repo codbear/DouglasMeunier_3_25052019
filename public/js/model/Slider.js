@@ -16,7 +16,7 @@
             const onWindowResizeBound = this.onWindowResize.bind(this);
             window.addEventListener('resize', onWindowResizeBound);
             if (shouldAutoScroll) {
-                setInterval(this.autoScroll.bind(this), autoScrollInterval);
+                this.autoScroller = setInterval(this.autoScroll.bind(this), autoScrollInterval);
             }
             this.userContainer.style.display = null;
         }
@@ -77,10 +77,15 @@
             this.pauseButton.textContent = 'pause_circle_outline';
             this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
             this.root.appendChild(this.pauseButton);
+            this.pauseButton.addEventListener('click', this.pauseAutoScroll.bind(this));
             this.playButton = document.createElement('i');
             this.playButton.textContent = 'play_circle_outline';
             this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
             this.root.appendChild(this.playButton);
+        }
+
+        pauseAutoScroll() {
+            clearInterval(this.autoScroller);
         }
 
         moveNext() {
