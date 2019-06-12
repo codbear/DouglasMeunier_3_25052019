@@ -12,6 +12,8 @@
             this.moveNext = this.moveNext.bind(this);
             this.movePrev = this.movePrev.bind(this);
             this.onWindowResize = this.onWindowResize.bind(this);
+            this.shouldAutoScroll = shouldAutoScroll;
+            this.autoScrollInterval = autoScrollInterval;
             this.pauseAutoScroll = this.pauseAutoScroll.bind(this);
             this.startAutoScroll = this.startAutoScroll.bind(this);
             this.createHtmlStructure();
@@ -19,8 +21,6 @@
             this.createNavigation();
             this.onWindowResize();
             window.addEventListener('resize', this.onWindowResize);
-            this.shouldAutoScroll = shouldAutoScroll;
-            this.autoScrollInterval = autoScrollInterval;
             if (shouldAutoScroll) {
                 this.startAutoScroll();
             }
@@ -77,16 +77,18 @@
                     this.movePrev();
                 }
             })
-            this.pauseButton = document.createElement('i');
-            this.pauseButton.textContent = 'pause_circle_outline';
-            this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
-            this.root.appendChild(this.pauseButton);
-            this.pauseButton.addEventListener('click', this.pauseAutoScroll);
-            this.playButton = document.createElement('i');
-            this.playButton.textContent = 'play_circle_outline';
-            this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
-            this.root.appendChild(this.playButton);
-            this.playButton.addEventListener('click', this.startAutoScroll);
+            if (this.shouldAutoScroll) {
+                this.pauseButton = document.createElement('i');
+                this.pauseButton.textContent = 'pause_circle_outline';
+                this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
+                this.root.appendChild(this.pauseButton);
+                this.pauseButton.addEventListener('click', this.pauseAutoScroll);
+                this.playButton = document.createElement('i');
+                this.playButton.textContent = 'play_circle_outline';
+                this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
+                this.root.appendChild(this.playButton);
+                this.playButton.addEventListener('click', this.startAutoScroll);
+            }
         }
 
         pauseAutoScroll() {
