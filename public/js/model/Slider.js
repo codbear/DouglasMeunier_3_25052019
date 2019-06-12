@@ -91,10 +91,13 @@
 
         pauseAutoScroll() {
             clearInterval(this.autoScroller);
+            this.autoScroller = undefined;
         }
 
         startAutoScroll() {
-            this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
+            if (this.autoScroller === undefined) {
+                this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
+            }
         }
 
         autoScroll() {
@@ -133,6 +136,8 @@
             window.removeEventListener('resize', this.onWindowResize);
             this.nextButton.removeEventListener('click', this.moveNext);
             this.prevButton.removeEventListener('click', this.movePrev);
+            this.pauseButton.addEventListener('click', this.pauseAutoScroll);
+            this.playButton.addEventListener('click', this.startAutoScroll);
         }
     }
 
