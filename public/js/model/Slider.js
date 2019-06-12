@@ -80,12 +80,12 @@
             if (this.shouldAutoScroll) {
                 this.pauseButton = document.createElement('i');
                 this.pauseButton.textContent = 'pause_circle_outline';
-                this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
+                this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium', 'blue', 'darken-1', 'white-text');
                 this.root.appendChild(this.pauseButton);
                 this.pauseButton.addEventListener('click', this.pauseAutoScroll);
                 this.playButton = document.createElement('i');
                 this.playButton.textContent = 'play_circle_outline';
-                this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
+                this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium', 'blue', 'darken-1', 'white-text');
                 this.root.appendChild(this.playButton);
                 this.playButton.addEventListener('click', this.startAutoScroll);
             }
@@ -94,15 +94,15 @@
         pauseAutoScroll() {
             clearInterval(this.autoScroller);
             this.autoScroller = undefined;
-            this.playButton.classList.remove('blue', 'darken-1', 'white-text')
-            this.pauseButton.classList.add('blue', 'darken-1', 'white-text')
+            this.playButton.style.display = null;
+            this.pauseButton.style.display = 'none';
         }
 
         startAutoScroll() {
             if (this.autoScroller === undefined) {
                 this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
-                this.pauseButton.classList.remove('blue', 'darken-1', 'white-text')
-                this.playButton.classList.add('blue', 'darken-1', 'white-text')
+                this.playButton.style.display = 'none';
+                this.pauseButton.style.display = null;
             }
         }
 
