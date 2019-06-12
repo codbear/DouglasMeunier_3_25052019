@@ -12,6 +12,8 @@
             this.moveNext = this.moveNext.bind(this);
             this.movePrev = this.movePrev.bind(this);
             this.onWindowResize = this.onWindowResize.bind(this);
+            this.pauseAutoScroll = this.pauseAutoScroll.bind(this);
+            this.startAutoScroll = this.startAutoScroll.bind(this);
             this.createHtmlStructure();
             this.setStyle();
             this.createNavigation();
@@ -79,12 +81,12 @@
             this.pauseButton.textContent = 'pause_circle_outline';
             this.pauseButton.classList.add('cdw-slider-pauseBtn', 'material-icons', 'medium');
             this.root.appendChild(this.pauseButton);
-            this.pauseButton.addEventListener('click', this.pauseAutoScroll.bind(this));
+            this.pauseButton.addEventListener('click', this.pauseAutoScroll);
             this.playButton = document.createElement('i');
             this.playButton.textContent = 'play_circle_outline';
             this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
             this.root.appendChild(this.playButton);
-            this.playButton.addEventListener('click', this.startAutoScroll.bind(this));
+            this.playButton.addEventListener('click', this.startAutoScroll);
         }
 
         pauseAutoScroll() {
@@ -128,9 +130,9 @@
 
 
         destruct() {
-            window.removeEventListener('resize', onWindowResizeBound);
-            this.nextButton.addEventListener('click', moveNextBound);
-            this.prevButton.addEventListener('click', movePrevBound);
+            window.removeEventListener('resize', this.onWindowResize);
+            this.nextButton.removeEventListener('click', this.moveNext);
+            this.prevButton.removeEventListener('click', this.movePrev);
         }
     }
 
