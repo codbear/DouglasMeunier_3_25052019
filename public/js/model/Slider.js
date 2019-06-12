@@ -18,7 +18,7 @@
             this.shouldAutoScroll = shouldAutoScroll;
             this.autoScrollInterval = autoScrollInterval;
             if (shouldAutoScroll) {
-                this.autoScroller = setInterval(this.autoScroll.bind(this), autoScrollInterval);
+                this.startAutoScroll();
             }
             this.userContainer.style.display = null;
         }
