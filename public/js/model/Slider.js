@@ -15,6 +15,8 @@
             this.onWindowResize();
             const onWindowResizeBound = this.onWindowResize.bind(this);
             window.addEventListener('resize', onWindowResizeBound);
+            this.shouldAutoScroll = shouldAutoScroll;
+            this.autoScrollInterval = autoScrollInterval;
             if (shouldAutoScroll) {
                 this.autoScroller = setInterval(this.autoScroll.bind(this), autoScrollInterval);
             }
@@ -82,10 +84,19 @@
             this.playButton.textContent = 'play_circle_outline';
             this.playButton.classList.add('cdw-slider-playBtn', 'material-icons', 'medium');
             this.root.appendChild(this.playButton);
+            this.playButton.addEventListener('click', this.startAutoScroll.bind(this));
         }
 
         pauseAutoScroll() {
             clearInterval(this.autoScroller);
+        }
+
+        startAutoScroll() {
+            this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
+        }
+
+        autoScroll() {
+            this.moveNext();
         }
 
         moveNext() {
@@ -115,9 +126,6 @@
             }
         }
 
-        autoScroll() {
-            this.moveNext();
-        }
 
         destruct() {
             window.removeEventListener('resize', onWindowResizeBound);
