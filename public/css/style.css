@@ -92,6 +92,7 @@ Map
 */
 #stations-map {
     height: 90vh;
+    z-index: 0;
 }
 
 @media (min-width: 768px) {
