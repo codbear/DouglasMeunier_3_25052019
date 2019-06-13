@@ -112,7 +112,7 @@
             this.remainingTimeDisplay = document.createElement('p');
             this.reservationDetailsRoot.appendChild(this.remainingTimeDisplay)
             if (!shouldJustRefresh) {
-                this.reservationDate = new Date();
+                this.reservationDate = new Date().getTime() /1000;
                 sessionStorage.setItem('reservationDate', this.reservationDate);
                 this.storeReservationDetails();
             }
@@ -121,8 +121,8 @@
 
         startReservationTimer() {
             const timer = function() {
-                let timestamp = new Date();
-                this.remainingTime = 1200 - ((timestamp - this.reservationDate) / 1000);
+                const timestamp = new Date().getTime() / 1000;
+                this.remainingTime = 1200 - (timestamp - this.reservationDate);
                 if (this.remainingTime <= 0) {
                     this.remainingTimeDisplay.innerHTML = '<span class="badge red white-text">Expirée</span>';
                     clearInterval(reservationTimer);
@@ -134,7 +134,7 @@
                 this.remainingTimeDisplay.innerHTML = 'Temps restant : ' + remainingMinutes + ' min ' + remainingSecondes + ' s';
             }
             if (sessionStorage.getItem('reservationDate')) {
-                this.reservationDate = new Date(sessionStorage.getItem('reservationDate'));
+                this.reservationDate = sessionStorage.getItem('reservationDate');
             }
             let reservationTimer = setInterval(timer.bind(this), 1000);
         }
