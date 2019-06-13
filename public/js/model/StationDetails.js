@@ -27,14 +27,18 @@
             switch (station.status) {
                 case 'OPEN':
                     this.status.textContent = 'Ouvert';
+                    this.status.classList.remove('red-text');
                     this.status.classList.add('green-text');
                     break;
                 case 'CLOSED':
                     this.status.textContent = 'Fermé';
+                    this.status.classList.remove('green-text');
                     this.status.classList.add('red-text');
                     break;
                 default :
                     this.status.textContent = 'Impossible de récupérer l\'état de la station';
+                    this.status.classList.remove('green-text');
+                    this.status.classList.add('red-text');
             }
             this.address.textContent = station.address.toLowerCase();
             this.address.classList.add('capitalize');
