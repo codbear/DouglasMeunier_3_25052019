@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 function onClick() {
                     stationDetails.displayDetails(station);
                     reservation.displayReservationForm();
+                    window.scrollTo(0, $stationDetailsContainer.offsetTop);
                 }
                 const marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
             })
