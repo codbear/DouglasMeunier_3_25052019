@@ -20,7 +20,7 @@
             this.modalBox = document.querySelector(this.triggerBtn.dataset.target);
             this.contentWrapper = this.modalBox.querySelector('.modal-box-wrapper');
             this.closeBtn = this.modalBox.querySelector('.close-modal-box');
-            this.modalBox.style.display = null;
+            this.modalBox.style.removeProperty('display');
             this.modalBox.addEventListener('click', this.closeBox);
             this.closeBtn.addEventListener('click', this.closeBox);
             this.contentWrapper.addEventListener('click', this.stopPropagation);
