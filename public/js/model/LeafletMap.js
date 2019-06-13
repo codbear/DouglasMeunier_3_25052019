@@ -20,10 +20,10 @@
             })
         }
 
-        addMarker(lat, lng, title, onClick = undefined) {
+        addMarker(lat, lng, title, onClick = undefined, iconUrl = undefined) {
             const bound = [lat, lng];
             this.bounds.push(bound);
-            return new window.LeafletMarker(this.map, bound, title, onClick);
+            return new window.LeafletMarker(this.map, bound, title, onClick, iconUrl);
         }
 
         centerOnMarkers() {

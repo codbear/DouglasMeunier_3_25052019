@@ -28,7 +28,16 @@ document.addEventListener('DOMContentLoaded', function (){
                     reservation.displayReservationForm();
                     window.scrollTo(0, $stationDetailsContainer.offsetTop);
                 }
-                const marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
+                switch (station.status) {
+                    case 'OPEN':
+                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
+                        break;
+                    case 'CLOSED':
+                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick, 'public/img/red_marker_icon.png');
+                        break;
+                    default :
+                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
+                }
             })
             map.centerOnMarkers();
         }, (status, statusText) => {
