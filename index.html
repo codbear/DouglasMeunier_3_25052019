@@ -13,67 +13,84 @@
         <link rel="stylesheet" href="public/css/style.css">
     </head>
     <body>
-        <div class="navbar-fixed">
-            <nav class="blue darken-1">
-                <div class="nav-wrapper">
-                    <img src="public/img/logo.png" alt="logo de biclou" class="brand-logo"/>
+        <div id="preloader">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
                 </div>
-            </nav>
+            </div>
         </div>
-        <div id="welcome-slider" class="col s12">
-            <img src="public/img/slider/slider1.png" alt="Choisissez une station sur la carte" class="slide"/>
-            <img src="public/img/slider/slider2.png" alt="Remplissez le formulaire et faite votre plus bel autographe" class="slide"/>
-            <img src="public/img/slider/slider3.png" alt="Votre vélo est réservé, vous avez 20 minutes pour le récupérer" class="slide"/>
-        </div>
-        <div class="row">
-            <div id="stations-map" class="col s10 offset-s1 l7 card"></div>
-            <div class="col s10 offset-s1 l4">
-                <div id="station-details-container" class="card">
-                    <div class="card-content">
-                        <h2 class="card-title">Détails de la station</h2>
-                        <div id="station-details"></div>
-                        <div class="card-action">
-                            <p class="call-to-action">Sélectionnez une station pour afficher ses détails</p>
-                            <p class="confirmation-message light-green lighten-3 green-text text-darken-4" style="display: none">Réservation effectuée avec succès</p>
-                            <form id="reservation-form" method="post" style="display: none;">
-                                <div class="input-field">
-                                    <input id="lastName" name="lastName" type="text" class="validate"/>
-                                    <label for="lastName">Nom</label>
-                                </div>
-                                <div class="input-field">
-                                    <input id="firstName" name="firstName" type="text" class="validate"/>
-                                    <label for="firstName">Prénom</label>
-                                </div>
-                                <button id="book-btn" class="waves-effect waves-light btn blue darken-1" data-target="#modal-signature-pad" disabled><i class="material-icons left">directions_bike</i>Réserver</button>
-                                <div id="modal-signature-pad" class="modal-box" style="display: none;">
-                                    <div class="modal-box-wrapper card">
-                                        <i class="close-modal-box material-icons right">close</i>
-                                        <div class="card-content">
-                                            <div class="card-action">
-                                                <p class="sp-helper">Merci de signer dans le cadre ci-dessous pour certifier l'exactitude des données renseignées.</p><br/>
-                                                <p class="sp-no-signature-switch blue-text">Je ne peux pas signer</p><br/>
-                                                <label class="sp-no-signature-version" style="display: none;">
-                                                    <input type="checkbox" class="filled-in"/>
-                                                    <span class="black-text">J'atteste sur l'honneur que les informations saisies sont valides</span><br/>
-                                                    <br/>
-                                                </label>
-                                                <canvas class="sp-canvas"></canvas><br/>
-                                                <button class="sp-reset-btn waves-effect waves-light btn"><i class="material-icons left">clear_all</i>Effacer</button>
-                                                <button class="sp-validation-btn waves-effect waves-light btn"><i class="material-icons left">check</i>Valider</button><br/><br/>
-                                                <p class="sp-error-txt red lighten-3 red-text text-darken-4" style="visibility: hidden;">Vous devez signer pour valider la réservation</p>
+        <div id="main" style="display: none;">
+            <div class="navbar-fixed">
+                <nav class="blue darken-1">
+                    <div class="nav-wrapper">
+                        <img src="public/img/logo.png" alt="logo de biclou" class="brand-logo"/>
+                    </div>
+                </nav>
+            </div>
+            <div id="welcome-slider" class="col s12">
+                <img src="public/img/slider/slider1.png" alt="Choisissez une station sur la carte" class="slide"/>
+                <img src="public/img/slider/slider2.png" alt="Remplissez le formulaire et faite votre plus bel autographe" class="slide"/>
+                <img src="public/img/slider/slider3.png" alt="Votre vélo est réservé, vous avez 20 minutes pour le récupérer" class="slide"/>
+            </div>
+            <div class="row">
+                <div id="stations-map" class="col s10 offset-s1 l7 card"></div>
+                <div class="col s10 offset-s1 l4">
+                    <div id="station-details-container" class="card">
+                        <div class="card-content">
+                            <h2 class="card-title">Détails de la station</h2>
+                            <div id="station-details"></div>
+                            <div class="card-action">
+                                <p class="call-to-action">Sélectionnez une station pour afficher ses détails</p>
+                                <p class="confirmation-message light-green lighten-3 green-text text-darken-4" style="display: none">Réservation effectuée avec succès</p>
+                                <form id="reservation-form" method="post" style="display: none;">
+                                    <div class="input-field">
+                                        <input id="lastName" name="lastName" type="text" class="validate"/>
+                                        <label for="lastName">Nom</label>
+                                    </div>
+                                    <div class="input-field">
+                                        <input id="firstName" name="firstName" type="text" class="validate"/>
+                                        <label for="firstName">Prénom</label>
+                                    </div>
+                                    <button id="book-btn" class="waves-effect waves-light btn blue darken-1" data-target="#modal-signature-pad" disabled><i class="material-icons left">directions_bike</i>Réserver</button>
+                                    <div id="modal-signature-pad" class="modal-box" style="display: none;">
+                                        <div class="modal-box-wrapper card">
+                                            <i class="close-modal-box material-icons right">close</i>
+                                            <div class="card-content">
+                                                <div class="card-action">
+                                                    <p class="sp-helper">Merci de signer dans le cadre ci-dessous pour certifier l'exactitude des données renseignées.</p><br/>
+                                                    <p class="sp-no-signature-switch blue-text">Je ne peux pas signer</p><br/>
+                                                    <label class="sp-no-signature-version" style="display: none;">
+                                                        <input type="checkbox" class="filled-in"/>
+                                                        <span class="black-text">J'atteste sur l'honneur que les informations saisies sont valides</span><br/>
+                                                        <br/>
+                                                    </label>
+                                                    <canvas class="sp-canvas"></canvas><br/>
+                                                    <button class="sp-reset-btn waves-effect waves-light btn"><i class="material-icons left">clear_all</i>Effacer</button>
+                                                    <button class="sp-validation-btn waves-effect waves-light btn"><i class="material-icons left">check</i>Valider</button><br/><br/>
+                                                    <p class="sp-error-txt red lighten-3 red-text text-darken-4" style="visibility: hidden;">Vous devez signer pour valider la réservation</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div id="reservation-details" class="card">
-                    <div class="card-content">
-                        <h2 class="card-title">Réservation en cours</h2>
-                        <div id="reservation-status" class="card-action">
-                            <p>Vous n'avez aucune réservation en cours</p>
+                    <div id="reservation-details" class="card">
+                        <div class="card-content">
+                            <h2 class="card-title">Réservation en cours</h2>
+                            <div id="reservation-status" class="card-action">
+                                <p>Vous n'avez aucune réservation en cours</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+const $preloader = document.querySelector('#preloader');
+const $siteContent = document.querySelector('#main');
 const $stationsMap = document.querySelector('#stations-map');
 const $stationDetailsContainer = document.querySelector('#station-details-container');
 const $reservationForm = document.querySelector('#reservation-form');
@@ -55,3 +57,6 @@ signaturePad.onValidation((e) => {
     reservation.hideReservationForm();
     reservation.displayConfirmationMessage();
 })
+
+$preloader.style.display = 'none';
+$siteContent.style.removeProperty('display');
