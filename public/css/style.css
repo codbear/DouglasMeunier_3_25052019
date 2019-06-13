@@ -95,13 +95,13 @@ Map
     z-index: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 993px) {
     #stations-map {
         margin: 0 3% 0 2%;
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 993px) {
     #stations-map {
         height: 45vh;
     }
@@ -118,21 +118,25 @@ Station details
     text-transform: capitalize;
 }
 
-@media (max-width: 767px) {
+.confirmation-message {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+/*
+Reservation details
+*/
+@media (max-width: 768px) {
     #reservation-details {
-        position: sticky !important;
+        position: sticky;
         bottom: 0;
         z-index: 1;
     }
 }
 
-.confirmation-message {
-	height: 50px;
-	display: flex;
-	align-items: center;
-	padding-left: 20px;
-	border-radius: 5px;
-}
 
 /*
 Modal box
