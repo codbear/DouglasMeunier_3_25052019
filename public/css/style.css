@@ -117,6 +117,14 @@ Station details
     text-transform: capitalize;
 }
 
+@media (max-width: 767px) {
+    #reservation-details {
+        position: sticky !important;
+        bottom: 0;
+        z-index: 1;
+    }
+}
+
 /*
 Modal box
 */
