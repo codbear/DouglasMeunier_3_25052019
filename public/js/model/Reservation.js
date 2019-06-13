@@ -71,7 +71,7 @@
         }
 
         displayReservationForm() {
-            this.reservationForm.style.display = null;
+            this.reservationForm.style.removeProperty('display');
         }
 
         hideReservationForm() {
@@ -140,13 +140,13 @@
         }
 
         displayConfirmationMessage() {
-            this.confirmationMessage.style.display = null;
+            this.confirmationMessage.style.removeProperty('display');
             setTimeout(this.hideConfirmationMessage.bind(this), 2000);
         }
 
         hideConfirmationMessage() {
             this.confirmationMessage.style.display = 'none';
-            this.callToAction.style.display = null;
+            this.callToAction.style.removeProperty('display');
         }
     }
 
