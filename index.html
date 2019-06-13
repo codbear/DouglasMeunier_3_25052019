@@ -49,15 +49,21 @@
                                     <div class="modal-box-wrapper card">
                                         <div class="card-content">
                                             <button class="close-modal-box waves-effect waves-light btn"><i class="material-icons left">close</i>Fermer</button>
+                                            <button class="sp-accessible-version-btn waves-effect waves-light btn"><i class="material-icons left">accessible</i>Version accessible</button><br/>
                                             <br/>
                                             <div class="card-title">
                                                 <p class="grey-text text-darken-2">Nous avons besoin de votre autographe pour valider la réservation</p>
                                             </div>
                                             <div class="card-action">
+                                                <label class="sp-accessible-version" style="display: none;">
+                                                    <input type="checkbox" class="filled-in"/>
+                                                    <span class="black-text">J'atteste sur l'honneur que les informations saisies sont valides</span><br/>
+                                                    <br/>
+                                                </label>
                                                 <canvas class="sp-canvas"></canvas>
-                                                <p class="sp-error-txt" style="visibility: hidden;">Vous devez signer pour valider la réservation</p>
+                                                <p class="sp-error-txt red lighten-3 red-text text-darken-4" style="visibility: hidden;">Vous devez signer pour valider la réservation</p><br/>
                                                 <button class="sp-reset-btn waves-effect waves-light btn"><i class="material-icons left">clear_all</i>Effacer</button>
-                                                <button class="sp-validation-btn waves-effect waves-light btn"><i class="material-icons left">check</i>Signer</button>
+                                                <button class="sp-validation-btn waves-effect waves-light btn"><i class="material-icons left">check</i>Valider</button>
                                             </div>
                                         </div>
                                     </div>

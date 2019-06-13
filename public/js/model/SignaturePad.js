@@ -6,6 +6,8 @@
             this.canvas = container.querySelector('.sp-canvas');
             this.canvas.width = width;
             this.canvas.height = height;
+            this.accessibleVersionButton = container.querySelector('.sp-accessible-version-btn');
+            this.accessibleVersion = container.querySelector('.sp-accessible-version');
             this.resetButton = container.querySelector('.sp-reset-btn');
             this.validationButton = container.querySelector('.sp-validation-btn');
             this.errorText = container.querySelector('.sp-error-txt');
@@ -59,6 +61,14 @@
             window.addEventListener('mouseup', () => {
                 this.canvas.removeEventListener('mousemove', drawBound);
             })
+            this.accessibleVersionButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.canvas.style.display = 'none';
+                this.resetButton.style.display = 'none';
+                this.errorText.style.visibility = 'hidden';
+                this.accessibleVersion.style.display = null;
+                this.isAccessible = true;
+            })
             this.resetButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.clearPad();
@@ -68,6 +78,15 @@
         onValidation(callback) {
             this.validationButton.addEventListener('click', (e) => {
                 e.preventDefault();
+                if (this.isAccessible) {
+                    if (this.accessibleVersion.querySelector('input').checked) {
+                        callback(e);
+                        return;
+                    }
+                    this.errorText.textContent = 'Cochez la case pour valider la réservation';
+                    this.displayErrorText();
+                    return;
+                }
                 if (this.isEmpty()) {
                     this.displayErrorText();
                     return;

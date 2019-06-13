@@ -118,7 +118,7 @@ Station details
     text-transform: capitalize;
 }
 
-.confirmation-message {
+.confirmation-message, .sp-error-txt {
     height: 50px;
     display: flex;
     align-items: center;
