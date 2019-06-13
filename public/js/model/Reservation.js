@@ -1,7 +1,9 @@
 (function(window, document) {
     class Reservation {
 
-        constructor(reservationForm, bookBtn, reservationDetailsRoot) {
+        constructor(stationDetailsContainer, reservationForm, bookBtn, reservationDetailsRoot) {
+            this.confirmationMessage = stationDetailsContainer.querySelector('.confirmation-message');
+            this.callToAction = stationDetailsContainer.querySelector('.call-to-action');
             this.reservationForm = reservationForm;
             this.bookBtn = bookBtn;
             this.reservationDetailsRoot = reservationDetailsRoot;
@@ -72,6 +74,10 @@
             this.reservationForm.style.display = null;
         }
 
+        hideReservationForm() {
+            this.reservationForm.style.display = 'none';
+        }
+
         toggleBookButtonState() {
             if (this.firstName !== "" && this.lastName !== "") {
                 this.bookBtn.disabled = false;
@@ -131,6 +137,16 @@
                 this.reservationDate = new Date(sessionStorage.getItem('reservationDate'));
             }
             let reservationTimer = setInterval(timer.bind(this), 1000);
+        }
+
+        displayConfirmationMessage() {
+            this.confirmationMessage.style.display = null;
+            setTimeout(this.hideConfirmationMessage.bind(this), 2000);
+        }
+
+        hideConfirmationMessage() {
+            this.confirmationMessage.style.display = 'none';
+            this.callToAction.style.display = null;
         }
     }
 

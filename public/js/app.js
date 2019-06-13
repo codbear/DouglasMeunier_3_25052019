@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     const welcomeSlider = new window.Slider(document.querySelector('#welcome-slider'), true);
     const stationDetails = new window.StationDetails($stationDetailsContainer);
-    const reservation = new window.Reservation($reservationForm, $bookBtn, $reservationStatus);
+    const reservation = new window.Reservation($stationDetailsContainer, $reservationForm, $bookBtn, $reservationStatus);
     const modalSignaturePad = new window.ModalBox($bookBtn);
     const signaturePad = new window.SignaturePad($signaturePadContainer, 450, 400);
 
@@ -46,5 +46,8 @@ document.addEventListener('DOMContentLoaded', function (){
     signaturePad.onValidation((e) => {
         modalSignaturePad.closeBox(e);
         reservation.displayReservationDetails(stationDetails.address.innerHTML);
+        stationDetails.hideDetails();
+        reservation.hideReservationForm();
+        reservation.displayConfirmationMessage();
     })
 })

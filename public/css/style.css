@@ -126,6 +126,14 @@ Station details
     }
 }
 
+.confirmation-message {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding-left: 20px;
+	border-radius: 5px;
+}
+
 /*
 Modal box
 */

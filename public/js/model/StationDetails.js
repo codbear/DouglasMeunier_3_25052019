@@ -16,7 +16,7 @@
         }
 
         createHtmlStructure() {
-            document.querySelector('.call-to-action').style.display = 'none';
+            this.callToAction.style.display = 'none';
             this.stationDetails.appendChild(this.status);
             this.stationDetails.appendChild(this.address);
             this.stationDetails.appendChild(this.availableBikes);
@@ -63,6 +63,10 @@
         displayDetails(station) {
             this.setDetails(station);
             this.createHtmlStructure();
+        }
+
+        hideDetails() {
+            this.stationDetails.innerHTML = "";
         }
     }
 
