@@ -112,10 +112,18 @@
 
         moveNext() {
             this.gotoSlide(this.currentSlide + this.slidesToScroll);
+            if (this.shouldAutoScroll) {
+                this.pauseAutoScroll();
+                this.startAutoScroll();
+            }
         }
 
         movePrev() {
             this.gotoSlide(this.currentSlide - this.slidesToScroll);
+            if (this.shouldAutoScroll) {
+                this.pauseAutoScroll();
+                this.startAutoScroll();
+            }
         }
 
         gotoSlide(sliderIndex) {
