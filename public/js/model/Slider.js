@@ -24,7 +24,7 @@
             if (shouldAutoScroll) {
                 this.startAutoScroll();
             }
-            this.userContainer.style.display = null;
+            this.userContainer.style.removeProperty('display');
         }
 
         get slidesVisible() {
@@ -92,22 +92,18 @@
         }
 
         pauseAutoScroll() {
-            clearInterval(this.autoScroller);
-            this.autoScroller = undefined;
-            this.playButton.style.display = null;
+            clearInterval(this.autoScrollClock);
+            this.autoScrollClock = undefined;
+            this.playButton.style.removeProperty('display');
             this.pauseButton.style.display = 'none';
         }
 
         startAutoScroll() {
-            if (this.autoScroller === undefined) {
-                this.autoScroller = setInterval(this.autoScroll.bind(this), this.autoScrollInterval);
+            if (this.autoScrollClock === undefined) {
+                this.autoScrollClock = setInterval(this.moveNext, this.autoScrollInterval);
                 this.playButton.style.display = 'none';
-                this.pauseButton.style.display = null;
+                this.pauseButton.style.removeProperty('display');
             }
-        }
-
-        autoScroll() {
-            this.moveNext();
         }
 
         moveNext() {
