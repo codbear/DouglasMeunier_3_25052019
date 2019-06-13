@@ -101,7 +101,7 @@ Map
     }
 }
 
-@media (max-width: 993px) {
+@media (max-width: 992px) {
     #stations-map {
         height: 45vh;
     }

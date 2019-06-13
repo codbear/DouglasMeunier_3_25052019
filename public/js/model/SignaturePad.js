@@ -6,6 +6,7 @@
             this.canvas = container.querySelector('.sp-canvas');
             this.canvas.width = width;
             this.canvas.height = height;
+            this.isSmallScreen = false;
             this.accessibleVersionButton = container.querySelector('.sp-accessible-version-btn');
             this.accessibleVersion = container.querySelector('.sp-accessible-version');
             this.resetButton = container.querySelector('.sp-reset-btn');
@@ -13,6 +14,9 @@
             this.errorText = container.querySelector('.sp-error-txt');
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
+            this.onWindowResize = this.onWindowResize.bind(this);
+            this.onWindowResize();
+            window.addEventListener('resize', this.onWindowResize);
             this.ctx.beginPath();
             this.initListeners();
         }
@@ -63,16 +67,28 @@
             })
             this.accessibleVersionButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.canvas.style.display = 'none';
-                this.resetButton.style.display = 'none';
-                this.errorText.style.visibility = 'hidden';
-                this.accessibleVersion.style.display = null;
-                this.isAccessible = true;
+                this.useAccessibleVersion();
             })
             this.resetButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.clearPad();
             })
+        }
+
+        useAccessibleVersion() {
+            this.canvas.style.display = 'none';
+            this.resetButton.style.display = 'none';
+            this.errorText.style.visibility = 'hidden';
+            this.accessibleVersion.style.display = null;
+            this.isAccessible = true;
+        }
+
+        useDefaultVersion() {
+            this.canvas.style.display = null;
+            this.resetButton.style.display = null;
+            this.errorText.style.visibility = 'hidden';
+            this.accessibleVersion.style.display = 'none';
+            this.isAccessible = false;
         }
 
         onValidation(callback) {
@@ -93,6 +109,18 @@
                 }
                 callback(e);
             })
+        }
+
+        onWindowResize() {
+            let isSmallScreen = window.innerWidth < 992;
+            if (isSmallScreen !== this.isSmallScreen) {
+                this.isSmallScreen = isSmallScreen;
+                if (this.isSmallScreen) {
+                    this.useAccessibleVersion();
+                    return;
+                }
+                this.useDefaultVersion();
+            }
         }
     }
 
