@@ -7,11 +7,13 @@
             this.canvas.width = width;
             this.canvas.height = height;
             this.isSmallScreen = false;
-            this.accessibleVersionButton = container.querySelector('.sp-accessible-version-btn');
-            this.accessibleVersion = container.querySelector('.sp-accessible-version');
+            this.noSignatureSwitch = container.querySelector('.sp-no-signature-switch');
+            this.noSignatureVersion = container.querySelector('.sp-no-signature-version');
+            this.noSignatureVersionCheckbox = this.noSignatureVersion.querySelector('input')
             this.resetButton = container.querySelector('.sp-reset-btn');
             this.validationButton = container.querySelector('.sp-validation-btn');
             this.errorText = container.querySelector('.sp-error-txt');
+            this.helper = container.querySelector('.sp-helper');
             this.ctx = this.canvas.getContext('2d');
             this.ctx.lineWidth = lineWidth;
             this.onWindowResize = this.onWindowResize.bind(this);
@@ -65,9 +67,22 @@
             window.addEventListener('mouseup', () => {
                 this.canvas.removeEventListener('mousemove', drawBound);
             })
-            this.accessibleVersionButton.addEventListener('click', (e) => {
+            this.noSignatureSwitch.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.useAccessibleVersion();
+                if (this.isNoSignatureVersion) {
+                    this.useDefaultVersion();
+                    this.noSignatureSwitch.textContent = 'Je ne peux pas signer';
+                    return;
+                }
+                this.useNoSignatureVersion();
+                this.noSignatureSwitch.textContent = 'Je peux signer';
+            })
+            this.noSignatureVersionCheckbox.addEventListener('change', (e) => {
+                if (this.noSignatureVersionCheckbox.checked) {
+                    this.hideErrorText();
+                } else {
+                    this.displayErrorText();
+                }
             })
             this.resetButton.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -75,31 +90,34 @@
             })
         }
 
-        useAccessibleVersion() {
+        useNoSignatureVersion() {
+            this.helper.textContent = 'Merci de cocher la case ci-dessous pour certifier l\'exactitude des données renseignées.';
+            this.errorText.textContent = 'Cochez la case pour valider la réservation';
             this.canvas.style.display = 'none';
             this.resetButton.style.display = 'none';
             this.errorText.style.visibility = 'hidden';
-            this.accessibleVersion.style.display = null;
-            this.isAccessible = true;
+            this.noSignatureVersion.style.removeProperty('display');
+            this.isNoSignatureVersion = true;
         }
 
         useDefaultVersion() {
-            this.canvas.style.display = null;
-            this.resetButton.style.display = null;
+            this.helper.textContent = 'Merci de signer dans le cadre ci-dessous pour certifier l\'exactitude des données renseignées.'
+            this.errorText.textContent = 'Vous devez signer pour valider la réservation';
+            this.canvas.style.removeProperty('display');
+            this.resetButton.style.removeProperty('display');
             this.errorText.style.visibility = 'hidden';
-            this.accessibleVersion.style.display = 'none';
-            this.isAccessible = false;
+            this.noSignatureVersion.style.display = 'none';
+            this.isNoSignatureVersion = false;
         }
 
         onValidation(callback) {
             this.validationButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (this.isAccessible) {
-                    if (this.accessibleVersion.querySelector('input').checked) {
+                if (this.isNoSignatureVersion) {
+                    if (this.noSignatureVersionCheckbox.checked) {
                         callback(e);
                         return;
                     }
-                    this.errorText.textContent = 'Cochez la case pour valider la réservation';
                     this.displayErrorText();
                     return;
                 }
@@ -112,14 +130,16 @@
         }
 
         onWindowResize() {
-            let isSmallScreen = window.innerWidth < 992;
+            const isSmallScreen = window.innerWidth < 992;
             if (isSmallScreen !== this.isSmallScreen) {
                 this.isSmallScreen = isSmallScreen;
                 if (this.isSmallScreen) {
-                    this.useAccessibleVersion();
+                    this.useNoSignatureVersion();
+                    this.noSignatureSwitch.style.display = 'none';
                     return;
                 }
                 this.useDefaultVersion();
+                this.noSignatureSwitch.style.removeProperty('display');
             }
         }
     }

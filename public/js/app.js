@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function (){
     const stationDetails = new window.StationDetails($stationDetailsContainer);
     const reservation = new window.Reservation($stationDetailsContainer, $reservationForm, $bookBtn, $reservationStatus);
     const modalSignaturePad = new window.ModalBox($bookBtn);
-    const signaturePad = new window.SignaturePad($signaturePadContainer, 450, 400);
+    const signaturePad = new window.SignaturePad($signaturePadContainer, 464, 400);
 
     const initMap = async function() {
         const map = new window.LeafletMap('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.');
@@ -29,14 +29,11 @@ document.addEventListener('DOMContentLoaded', function (){
                     window.scrollTo(0, $stationDetailsContainer.offsetTop);
                 }
                 switch (station.status) {
-                    case 'OPEN':
-                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
-                        break;
                     case 'CLOSED':
-                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick, 'public/img/red_marker_icon.png');
+                        map.addMarker(station.position.lat, station.position.lng, station.address, onClick, 'public/img/red_marker_icon.png');
                         break;
                     default :
-                        marker = map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
+                        map.addMarker(station.position.lat, station.position.lng, station.address, onClick);
                 }
             })
             map.centerOnMarkers();

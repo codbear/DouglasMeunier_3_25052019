@@ -163,6 +163,17 @@ Modal box
     background-color: #FFF;
 }
 
+.close-modal-box {
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.sp-no-signature-switch {
+    cursor: pointer;
+}
+
 .sp-canvas {
     position: relative;
     border: 1px solid black
