@@ -24,7 +24,6 @@
             if (shouldAutoScroll) {
                 this.startAutoScroll();
             }
-            this.userContainer.style.removeProperty('display');
         }
 
         get slidesVisible() {
