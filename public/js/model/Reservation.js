@@ -2,6 +2,7 @@
     class Reservation {
 
         constructor(stationDetailsContainer, reservationForm, bookBtn, reservationDetailsRoot) {
+            this.stationDetails = stationDetailsContainer.querySelector('#station-details');
             this.confirmationMessage = stationDetailsContainer.querySelector('.confirmation-message');
             this.callToAction = stationDetailsContainer.querySelector('.call-to-action');
             this.reservationForm = reservationForm;
@@ -91,10 +92,15 @@
             })
         }
 
-        onBooking(callback) {
+        onBooking(stationDetails, callback) {
             this.bookBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value !== "") {
+                this.stationStatus = this.stationDetails.dataset.status;
+                this.availableBikes = this.stationDetails.dataset.availableBikes;
+                if (this.reservationForm.firstName.value !== ''
+                    && this.reservationForm.lastName.value !== ''
+                    && this.stationStatus === 'open'
+                    && this.availableBikes >= 1) {
                     callback(e);
                 }
             })

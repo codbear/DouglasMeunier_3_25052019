@@ -10,9 +10,13 @@
 
         createHtmlElements() {
             this.status = document.createElement('p');
+            this.status.setAttribute('id', 'station-status');
             this.address = document.createElement('adress');
+            this.address.setAttribute('id', 'station-address');
             this.availableBikes = document.createElement('p');
+            this.availableBikes.setAttribute('id', 'available-bikes');
             this.availableBikeStands = document.createElement('p');
+            this.availableBikeStands.setAttribute('id', 'available-bike-stand');
         }
 
         createHtmlStructure() {
@@ -29,16 +33,19 @@
                     this.status.textContent = 'Ouvert';
                     this.status.classList.remove('red-text');
                     this.status.classList.add('green-text');
+                    this.stationDetails.dataset.status = 'open';
                     break;
                 case 'CLOSED':
                     this.status.textContent = 'Fermé';
                     this.status.classList.remove('green-text');
                     this.status.classList.add('red-text');
+                    this.stationDetails.dataset.status = 'close';
                     break;
                 default :
                     this.status.textContent = 'Impossible de récupérer l\'état de la station';
                     this.status.classList.remove('green-text');
                     this.status.classList.add('red-text');
+                    this.stationDetails.dataset.status = 'close';
             }
             this.address.textContent = station.address.toLowerCase();
             this.address.classList.add('capitalize');
@@ -62,6 +69,7 @@
                 this.availableBikeStands.textContent = 'Aucune place disponible';
                 this.availableBikeStands.classList.add('red-text');
             }
+            this.stationDetails.dataset.availableBikes = station.available_bikes;
         }
 
         displayDetails(station) {

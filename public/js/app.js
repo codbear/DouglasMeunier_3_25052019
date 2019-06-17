@@ -47,7 +47,7 @@ const initMap = async function() {
 if ($stationsMap !== null) {
     initMap();
 }
-reservation.onBooking((e) => {
+reservation.onBooking(stationDetails, (e) => {
     modalSignaturePad.openBox(e);
 })
 signaturePad.onValidation((e) => {
