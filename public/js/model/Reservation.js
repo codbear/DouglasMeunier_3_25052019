@@ -11,6 +11,7 @@
             this.recoverUserIdentity();
             this.recoverReservationDetails();
             this.toggleBookButtonState();
+            this.initListeners();
         }
 
         isStorageAvailable(type) {
@@ -72,6 +73,7 @@
         }
 
         displayReservationForm() {
+            this.hideConfirmationMessage();
             this.reservationForm.style.removeProperty('display');
         }
 
@@ -79,17 +81,22 @@
             this.reservationForm.style.display = 'none';
         }
 
-        toggleBookButtonState() {
-            if (this.firstName !== "" && this.lastName !== "") {
-                this.bookBtn.disabled = false;
-            }
+        initListeners() {
             this.reservationForm.addEventListener('input', (e) => {
-                if (this.reservationForm.firstName.value !== "" && this.reservationForm.firstName.value !== "") {
-                    this.bookBtn.disabled = false;
-                } else {
-                    this.bookBtn.disabled = true;
-                }
+                this.toggleBookButtonState();
             })
+        }
+
+        toggleBookButtonState() {
+            this.firstName = this.reservationForm.firstName.value;
+            this.lastName = this.reservationForm.lastName.value;
+            this.stationStatus = this.stationDetails.dataset.status;
+            this.availableBikes = this.stationDetails.dataset.availableBikes;
+            if (this.firstName !== '' && this.lastName !== '' && this.stationStatus === 'open' && this.availableBikes >= 1) {
+                this.bookBtn.disabled = false;
+            } else {
+                this.bookBtn.disabled = true;
+            }
         }
 
         onBooking(stationDetails, callback) {
@@ -110,7 +117,7 @@
             this.firstName = this.reservationForm.firstName.value;
             this.lastName = this.reservationForm.lastName.value;
             this.storeUserIdentity();
-            this.stationAddress = stationAddress;
+            this.stationAddress = this.stationDetails.dataset.stationAddress;
             this.reservationDetailsRoot.innerHTML = '';
             this.reservationStatusDisplay = document.createElement('p');
             this.reservationStatusDisplay.innerHTML = 'Vélo réservé à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName + '.<br/><br/>';
@@ -147,12 +154,10 @@
 
         displayConfirmationMessage() {
             this.confirmationMessage.style.removeProperty('display');
-            setTimeout(this.hideConfirmationMessage.bind(this), 2000);
         }
 
         hideConfirmationMessage() {
             this.confirmationMessage.style.display = 'none';
-            this.callToAction.style.removeProperty('display');
         }
     }
 

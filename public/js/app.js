@@ -26,6 +26,7 @@ const initMap = async function() {
         stationsList.forEach((station) => {
             function onClick() {
                 stationDetails.displayDetails(station);
+                reservation.toggleBookButtonState();
                 reservation.displayReservationForm();
                 window.scrollTo(0, $stationDetailsContainer.offsetTop);
             }
@@ -52,8 +53,7 @@ reservation.onBooking(stationDetails, (e) => {
 })
 signaturePad.onValidation((e) => {
     modalSignaturePad.closeBox(e);
-    reservation.displayReservationDetails(stationDetails.address.innerHTML);
-    stationDetails.hideDetails();
+    reservation.displayReservationDetails();
     reservation.hideReservationForm();
     reservation.displayConfirmationMessage();
 })

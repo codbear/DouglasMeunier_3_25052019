@@ -69,6 +69,7 @@
                 this.availableBikeStands.textContent = 'Aucune place disponible';
                 this.availableBikeStands.classList.add('red-text');
             }
+            this.stationDetails.dataset.stationAddress = station.address.toLowerCase();
             this.stationDetails.dataset.availableBikes = station.available_bikes;
         }
 
