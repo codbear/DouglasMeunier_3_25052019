@@ -50,11 +50,13 @@
         displayErrorText() {
             this.errorText.style.visibility = 'visible';
             this.canvas.style.borderColor = 'red';
+            this.helper.style.borderColor = 'red';
         }
 
         hideErrorText() {
             this.canvas.style.borderColor = 'black';
             this.errorText.style.visibility = 'hidden';
+            this.helper.style.borderColor = '#2BBBAD';
         }
 
         initListeners() {
@@ -87,6 +89,7 @@
             this.resetButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.clearPad();
+                this.displayErrorText();
             })
         }
 
@@ -135,6 +138,7 @@
                 this.isSmallScreen = isSmallScreen;
                 if (this.isSmallScreen) {
                     this.useNoSignatureVersion();
+                    this.helper.textContent = 'La signature n\'est pas disponible sur les mobiles et tablettes à l\'heure actuelle. Merci de cocher la case ci-dessous pour certifier l\'exactitude des données renseignées.';
                     this.noSignatureSwitch.style.display = 'none';
                     return;
                 }

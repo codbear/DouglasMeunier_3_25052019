@@ -186,3 +186,8 @@ Modal box
     position: relative;
     border: 1px solid black
 }
+
+.sp-helper {
+    padding-left: 5px;
+    border-left: 3px solid red;
+}
