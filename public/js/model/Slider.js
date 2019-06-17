@@ -1,7 +1,7 @@
 (function(window, document) {
     class Slider {
 
-        constructor(userContainer, shouldAutoScroll = false, autoScrollInterval = 5000, userOptions = {}) {
+        constructor(userContainer, shouldAutoScroll = false, autoScrollInterval = 0, userOptions = {}) {
             this.userContainer = userContainer;
             this.userOptions = Object.assign({}, {
                 slidesToScroll: 1,
@@ -22,6 +22,9 @@
             this.onWindowResize();
             window.addEventListener('resize', this.onWindowResize);
             if (shouldAutoScroll) {
+                if (this.autoScrollInterval <= 0) {
+                    this.autoScrollInterval = 5000;
+                }
                 this.startAutoScroll();
             }
         }
