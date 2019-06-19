@@ -117,7 +117,11 @@
             this.firstName = this.reservationForm.firstName.value;
             this.lastName = this.reservationForm.lastName.value;
             this.storeUserIdentity();
-            this.stationAddress = this.stationDetails.dataset.stationAddress;
+            if (stationAddress) {
+                this.stationAddress = stationAddress;
+            } else {
+                this.stationAddress = this.stationDetails.dataset.stationAddress;
+            }
             this.reservationDetailsRoot.innerHTML = '';
             this.reservationStatusDisplay = document.createElement('p');
             this.reservationStatusDisplay.innerHTML = 'Vélo réservé à la station ' + this.stationAddress + ' par ' + this.firstName + ' ' + this.lastName + '.<br/><br/>';
