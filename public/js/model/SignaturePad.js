@@ -29,8 +29,24 @@
             }
         }
 
+        getMouseX(event) {
+            if (event.offsetX) {
+                return this.mouseX = event.offsetX;
+            } else if (event.layerX) {
+                return this.mouseX = event.layerX;
+            }
+        }
+
+        getMouseY(event) {
+            if (event.offsetX) {
+                return this.mouseY = event.offsetY;
+            } else if (event.layerX) {
+                return this.mouseY = event.layerY;
+            }
+        }
+
         draw(event) {
-            this.ctx.lineTo(event.layerX, event.layerY);
+            this.ctx.lineTo(this.getMouseX(event), this.getMouseY(event));
             this.ctx.stroke();
         }
 
@@ -63,7 +79,7 @@
             const drawBound = this.draw.bind(this);
             this.canvas.addEventListener('mousedown', (e) => {
                 this.hideErrorText();
-                this.ctx.moveTo(e.layerX, e.layerY);
+                this.ctx.moveTo(this.getMouseX(event), this.getMouseY(event));
                 this.canvas.addEventListener('mousemove', drawBound);
             });
             window.addEventListener('mouseup', () => {
