@@ -38,9 +38,9 @@
         }
 
         getMouseY(event) {
-            if (event.offsetX) {
+            if (event.offsetY) {
                 return this.mouseY = event.offsetY;
-            } else if (event.layerX) {
+            } else if (event.layerY) {
                 return this.mouseY = event.layerY;
             }
         }
